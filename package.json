@@ -1,0 +1,73 @@
+{
+  "name": "emeritus",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Emeritus — a K–12 Adaptive Multimodal Mastery Learning OS. A single, repository-aware runtime that treats content consumption as distinct from demonstrated learning, and enforces evidence-backed mastery across every grade band and subject.",
+  "author": "Zenith AI Automation Agency",
+  "license": "UNLICENSED",
+  "keywords": [
+    "k-12",
+    "edtech",
+    "adaptive-learning",
+    "mastery-learning",
+    "multimodal",
+    "ai-tutor",
+    "curriculum-graph",
+    "assessment-engine"
+  ],
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "overrides": {
+    "postcss": "8.5.26",
+    "tar": "7.5.21"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:integration": "node scripts/require-test-database.mjs && vitest run --config vitest.integration.config.ts",
+    "db:test:migrate": "tsx scripts/apply-test-migrations.ts",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "db:migrate": "supabase migration up",
+    "db:migrate:new": "supabase migration new",
+    "db:reset": "supabase db reset",
+    "db:seed": "tsx scripts/seed.ts",
+    "certify:k2": "tsx scripts/certify.ts --band=k-2",
+    "certify:3-5": "tsx scripts/certify.ts --band=3-5",
+    "certify:6-8": "tsx scripts/certify.ts --band=6-8",
+    "certify:9-12": "tsx scripts/certify.ts --band=9-12",
+    "certify:all": "tsx scripts/certify.ts --band=all"
+  },
+  "dependencies": {
+    "@supabase/ssr": "^0.5.0",
+    "@supabase/supabase-js": "^2.45.0",
+    "date-fns": "^3.6.0",
+    "next": "^15.0.0",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "recharts": "^2.12.0",
+    "zod": "^3.23.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.47.0",
+    "@types/node": "^22.0.0",
+    "@types/pg": "^8.21.0",
+    "@types/react": "^18.3.0",
+    "eslint": "^9.9.0",
+    "eslint-config-next": "^15.0.0",
+    "pg": "^8.23.0",
+    "supabase": "^1.200.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.5.0",
+    "vitest": "^2.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zenith-ai/emeritus.git"
+  }
+}

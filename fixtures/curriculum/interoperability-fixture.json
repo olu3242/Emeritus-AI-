@@ -1,0 +1,12 @@
+{
+  "schemaVersion": "1.0",
+  "package": {
+    "stableId": "fixture.year.competencies", "title": "Year and Competency Interoperability Fixture", "authorityStableId": "fixture-interop-authority",
+    "countryCode": "GB", "version": "1", "effectiveFrom": "2026-01-01",
+    "terminology": { "level": "Year", "subject": "Learning area", "standard": "Competency" },
+    "policies": { "mastery": "portfolio-demonstration", "grading": "emerging-secure-advanced" },
+    "provenance": { "sourceUrl": "https://example.invalid/interop-fixture", "sourceTitle": "Synthetic interoperability fixture", "publisher": "Emeritus test suite", "licenseId": "CC0-1.0", "retrievedAt": "2026-08-09T12:00:00.000Z", "authoritative": false }
+  },
+  "nodes": [{ "stableId": "fixture.year3.quantities", "kind": "competency", "title": "Reason with quantities", "level": "Year 3", "subject": "Maths", "provenance": { "sourceUrl": "https://example.invalid/interop-fixture", "sourceTitle": "Synthetic interoperability fixture", "publisher": "Emeritus test suite", "licenseId": "CC0-1.0", "retrievedAt": "2026-08-09T12:00:00.000Z", "authoritative": false } }],
+  "relationships": []
+}

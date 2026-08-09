@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emeritus — The K–12 Mastery Learning OS</title>
+<meta name="description" content="Emeritus replaces content completion with demonstrated, evidence-backed mastery — one adaptive multimodal runtime for every grade band, K through 12.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0B0E14;
+    --ink-1:#12161F;
+    --ink-2:#181D28;
+    --line:#242A36;
+    --line-soft:#1B202B;
+    --parchment:#F3EDDD;
+    --parchment-dim:#E7DFC9;
+    --brass:#C9A24B;
+    --brass-bright:#E4C878;
+    --brass-dim:#7C6430;
+    --burgundy:#7A2432;
+    --burgundy-bright:#C97783;
+    --text:#D8D2C4;
+    --text-dim:#9C968A;
+    --text-faint:#6E695E;
+    --serif:'Fraunces',Georgia,serif;
+    --sans:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:'IBM Plex Mono',monospace;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;}
+  ::selection{background:var(--brass-dim);color:var(--parchment);}
+
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--brass-bright);
+    outline-offset:3px;
+    border-radius:2px;
+  }
+
+  /* ============ NAV ============ */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:100;
+    background:rgba(11,14,20,0.86);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:0 32px;
+    height:72px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .wordmark{
+    display:flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-size:14px; letter-spacing:3px;
+    color:var(--parchment); font-weight:500;
+  }
+  .wordmark .dot{width:6px;height:6px;border-radius:50%;background:var(--brass-bright);box-shadow:0 0 8px var(--brass-bright);}
+  nav.links{display:flex; align-items:center; gap:36px;}
+  nav.links a{
+    font-size:13.5px; color:var(--text-dim); letter-spacing:0.2px;
+    transition:color .15s ease;
+  }
+  nav.links a:hover{color:var(--parchment);}
+  .nav-cta{
+    border:1px solid var(--brass-dim); color:var(--brass-bright);
+    padding:9px 18px; border-radius:3px; font-size:13px; letter-spacing:0.3px;
+    transition:all .18s ease; white-space:nowrap;
+  }
+  .nav-cta:hover{background:var(--brass); border-color:var(--brass); color:var(--ink);}
+  .nav-toggle{display:none;}
+
+  @media (max-width:920px){
+    nav.links{display:none;}
+    .nav-toggle{display:block; background:none; border:1px solid var(--line); color:var(--parchment); padding:8px 12px; border-radius:3px; font-family:var(--mono); font-size:12px;}
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    padding:168px 0 96px;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 900px 500px at 78% 10%, rgba(201,162,75,0.09), transparent 60%),
+      var(--ink);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:56px; align-items:center;
+  }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:var(--mono); font-size:12px; letter-spacing:2.5px; color:var(--brass);
+    margin-bottom:28px;
+  }
+  .eyebrow::before{content:'';width:22px;height:1px;background:var(--brass-dim);}
+  h1{
+    font-family:var(--serif); font-weight:600; font-style:normal;
+    font-size:clamp(38px, 4.6vw, 60px); line-height:1.06; letter-spacing:-0.5px;
+    color:var(--parchment);
+  }
+  h1 em{
+    font-style:italic; font-weight:500; color:var(--brass-bright);
+  }
+  .hero p.lede{
+    margin-top:26px; font-size:18px; line-height:1.65; color:var(--text-dim);
+    max-width:520px;
+  }
+  .hero-ctas{display:flex; gap:16px; margin-top:38px; flex-wrap:wrap;}
+  .btn-primary{
+    background:var(--brass-bright); color:var(--ink); font-weight:600; font-size:14.5px;
+    padding:14px 26px; border-radius:3px; letter-spacing:0.2px;
+    transition:transform .15s ease, box-shadow .15s ease;
+    box-shadow:0 0 0 rgba(228,200,120,0);
+  }
+  .btn-primary:hover{transform:translateY(-1px); box-shadow:0 8px 24px rgba(228,200,120,0.18);}
+  .btn-ghost{
+    border:1px solid var(--line); color:var(--text); font-size:14.5px; padding:14px 26px;
+    border-radius:3px; transition:border-color .15s ease, color .15s ease;
+  }
+  .btn-ghost:hover{border-color:var(--brass); color:var(--brass-bright);}
+  .hero-proof{
+    margin-top:52px; display:flex; gap:36px; flex-wrap:wrap;
+    font-family:var(--mono); font-size:11.5px; letter-spacing:1px; color:var(--text-faint);
+  }
+  .hero-proof strong{display:block; font-family:var(--serif); font-size:22px; color:var(--parchment); font-weight:600; letter-spacing:0; margin-bottom:4px;}
+
+  .hero-visual{position:relative;}
+  .hero-visual svg{width:100%; height:auto;}
+
+  /* ============ SECTION SCAFFOLDING ============ */
+  section{padding:104px 0; border-top:1px solid var(--line-soft);}
+  .section-head{max-width:660px; margin-bottom:56px;}
+  .section-eyebrow{
+    font-family:var(--mono); font-size:12px; letter-spacing:2.5px; color:var(--brass);
+    margin-bottom:16px;
+  }
+  h2{
+    font-family:var(--serif); font-weight:600; font-size:clamp(28px,3vw,38px);
+    color:var(--parchment); line-height:1.15; letter-spacing:-0.3px;
+  }
+  .section-head p{margin-top:16px; color:var(--text-dim); font-size:16.5px; line-height:1.65;}
+
+  /* ============ PROBLEM / EVIDENCE ROWS ============ */
+  .evidence-panel{
+    display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;
+  }
+  .evidence-copy p{color:var(--text-dim); font-size:16px; line-height:1.75; margin-bottom:18px;}
+  .evidence-copy p:last-child{margin-bottom:0;}
+  .evidence-copy strong{color:var(--parchment); font-weight:600;}
+  .metric-card{
+    background:var(--ink-1); border:1px solid var(--line); border-radius:8px; padding:36px;
+  }
+  .metric-row{
+    display:flex; justify-content:space-between; align-items:baseline;
+    padding:16px 0; border-bottom:1px solid var(--line-soft);
+  }
+  .metric-row:last-child{border-bottom:none;}
+  .metric-label{font-family:var(--mono); font-size:12px; letter-spacing:1px; color:var(--text-dim);}
+  .metric-value{font-family:var(--serif); font-size:26px; color:var(--parchment); font-weight:600;}
+  .metric-value.gap{color:var(--burgundy-bright);}
+  .metric-note{margin-top:22px; font-size:12.5px; color:var(--text-faint); line-height:1.6;}
+
+  /* ============ MASTERY LOOP SECTION ============ */
+  .loop-section{background:var(--ink-1); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft);}
+  .loop-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:60px; align-items:center;}
+  .loop-diagram svg{width:100%; height:auto;}
+  .loop-steps{list-style:none;}
+  .loop-steps li{
+    display:grid; grid-template-columns:44px 1fr; gap:18px; padding:18px 0;
+    border-bottom:1px solid var(--line-soft);
+  }
+  .loop-steps li:last-child{border-bottom:none;}
+  .loop-num{font-family:var(--mono); color:var(--brass); font-size:13px; padding-top:2px;}
+  .loop-steps h3{font-family:var(--serif); font-size:18px; color:var(--parchment); font-weight:600; margin-bottom:6px;}
+  .loop-steps p{color:var(--text-dim); font-size:14.5px; line-height:1.6;}
+
+  /* ============ ENGINES GRID ============ */
+  .engine-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--line-soft); border:1px solid var(--line-soft); border-radius:10px; overflow:hidden;}
+  .engine-card{background:var(--ink); padding:32px 30px; position:relative;}
+  .engine-card .engine-index{font-family:var(--mono); font-size:11px; color:var(--brass-dim); letter-spacing:1px; margin-bottom:16px;}
+  .engine-card h3{font-family:var(--serif); font-size:19px; color:var(--parchment); font-weight:600; margin-bottom:10px;}
+  .engine-card p{font-size:14px; color:var(--text-dim); line-height:1.6;}
+  @media (max-width:860px){.engine-grid{grid-template-columns:1fr;}}
+
+  /* ============ GRADE BANDS ============ */
+  .band-list{display:flex; flex-direction:column; border-top:1px solid var(--line);}
+  .band-row{
+    display:grid; grid-template-columns:140px 1fr 1.3fr; gap:32px;
+    padding:32px 0; border-bottom:1px solid var(--line); align-items:start;
+  }
+  .band-tag{font-family:var(--mono); font-size:13px; letter-spacing:1px; color:var(--brass-bright); padding-top:4px;}
+  .band-row h3{font-family:var(--serif); font-size:20px; color:var(--parchment); font-weight:600;}
+  .band-row .band-desc{color:var(--text-dim); font-size:14.5px; line-height:1.6; margin-top:8px;}
+  .band-row .band-modality{color:var(--text-faint); font-size:13px; line-height:1.7;}
+  .band-row .band-modality b{color:var(--text-dim); font-weight:500;}
+  @media (max-width:760px){.band-row{grid-template-columns:1fr; gap:8px;}}
+
+  /* ============ ROLES ============ */
+  .role-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
+  .role-card{
+    border:1px solid var(--line); border-radius:10px; padding:34px; background:linear-gradient(180deg, var(--ink-1), var(--ink));
+  }
+  .role-card .role-kicker{font-family:var(--mono); font-size:11px; color:var(--text-faint); letter-spacing:1.5px; margin-bottom:14px;}
+  .role-card h3{font-family:var(--serif); font-size:21px; color:var(--parchment); font-weight:600; margin-bottom:14px;}
+  .role-card ul{list-style:none;}
+  .role-card li{
+    font-size:14px; color:var(--text-dim); padding:9px 0 9px 20px; position:relative;
+    border-top:1px solid var(--line-soft);
+  }
+  .role-card li:first-child{border-top:none;}
+  .role-card li::before{content:'—'; position:absolute; left:0; color:var(--brass-dim);}
+  @media (max-width:860px){.role-grid{grid-template-columns:1fr;}}
+
+  /* ============ AI TUTOR GOVERNANCE ============ */
+  .gov-panel{display:grid; grid-template-columns:1fr 1fr; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden;}
+  .gov-col{padding:36px;}
+  .gov-col.does{background:linear-gradient(180deg, rgba(201,162,75,0.06), transparent);}
+  .gov-col.doesnt{background:linear-gradient(180deg, rgba(122,36,50,0.10), transparent);}
+  .gov-col h4{font-family:var(--mono); font-size:12px; letter-spacing:2px; margin-bottom:20px;}
+  .gov-col.does h4{color:var(--brass-bright);}
+  .gov-col.doesnt h4{color:var(--burgundy-bright);}
+  .gov-col ul{list-style:none;}
+  .gov-col li{font-size:14.5px; color:var(--text-dim); padding:10px 0; line-height:1.5;}
+
+  /* ============ SUBJECT PACK ============ */
+  .subject-strip{display:flex; flex-wrap:wrap; gap:12px;}
+  .subject-pill{
+    border:1px solid var(--line); border-radius:999px; padding:11px 20px;
+    font-size:13.5px; color:var(--text); font-family:var(--sans);
+    display:flex; align-items:center; gap:10px;
+  }
+  .subject-pill .sp-tag{font-family:var(--mono); font-size:10px; color:var(--brass-dim); letter-spacing:1px;}
+
+  /* ============ FAQ ============ */
+  .faq-list{border-top:1px solid var(--line);}
+  details{border-bottom:1px solid var(--line);}
+  details summary{
+    list-style:none; cursor:pointer; padding:26px 0; display:flex; justify-content:space-between;
+    align-items:center; gap:20px; font-family:var(--serif); font-size:18px; color:var(--parchment); font-weight:500;
+  }
+  details summary::-webkit-details-marker{display:none;}
+  .faq-icon{
+    flex:none; width:22px; height:22px; border:1px solid var(--brass-dim); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-family:var(--mono); color:var(--brass-bright);
+    font-size:14px; transition:transform .2s ease;
+  }
+  details[open] .faq-icon{transform:rotate(45deg);}
+  .faq-answer{padding:0 0 28px; max-width:760px; color:var(--text-dim); font-size:15px; line-height:1.7;}
+
+  /* ============ CLOSING CTA ============ */
+  .closing{
+    text-align:center; padding:120px 0;
+    background:radial-gradient(ellipse 700px 400px at 50% 0%, rgba(201,162,75,0.10), transparent 65%);
+  }
+  .closing h2{max-width:640px; margin:0 auto;}
+  .closing p{color:var(--text-dim); max-width:520px; margin:20px auto 40px; font-size:16px;}
+  .closing .hero-ctas{justify-content:center;}
+
+  /* ============ FOOTER ============ */
+  footer{border-top:1px solid var(--line-soft); padding:64px 0 40px;}
+  .footer-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:40px; margin-bottom:56px;}
+  .footer-brand .wordmark{margin-bottom:14px;}
+  .footer-brand p{color:var(--text-faint); font-size:13.5px; max-width:280px; line-height:1.6;}
+  .footer-col h5{font-family:var(--mono); font-size:11px; letter-spacing:1.5px; color:var(--text-faint); margin-bottom:16px;}
+  .footer-col a{display:block; font-size:14px; color:var(--text-dim); padding:6px 0; transition:color .15s ease;}
+  .footer-col a:hover{color:var(--brass-bright);}
+  .footer-bottom{
+    display:flex; justify-content:space-between; align-items:center; padding-top:28px;
+    border-top:1px solid var(--line-soft); font-size:12.5px; color:var(--text-faint);
+    flex-wrap:wrap; gap:12px;
+  }
+  @media (max-width:860px){.footer-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:560px){.footer-grid{grid-template-columns:1fr;}}
+
+  @media (max-width:960px){
+    .hero-grid, .evidence-panel, .loop-grid, .gov-panel{grid-template-columns:1fr;}
+    .hero-visual{order:-1;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a href="#top" class="wordmark"><span class="dot"></span>EMERITUS</a>
+    <nav class="links">
+      <a href="#loop">The Loop</a>
+      <a href="#engines">Engines</a>
+      <a href="#bands">Grade Bands</a>
+      <a href="#roles">Roles</a>
+      <a href="#tutor">AI Tutor</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="nav-cta" href="#request">Request Pilot Access</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" style="border-top:none; padding-top:168px;">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">K–12 ADAPTIVE MULTIMODAL MASTERY LEARNING OS</div>
+        <h1>Content consumption<br>is not <em>learning.</em></h1>
+        <p class="lede">Emeritus is the runtime underneath a school's curriculum — the layer that refuses to mark a concept mastered until a learner has proven it, lost it, and proven it again. One evidence engine for every grade, from counting objects to AP Government.</p>
+        <div class="hero-ctas">
+          <a href="#request" class="btn-primary">Request Pilot Access</a>
+          <a href="#loop" class="btn-ghost">Walk Through The Loop</a>
+        </div>
+        <div class="hero-proof">
+          <div><strong>K–12</strong>ONE CURRICULUM GRAPH</div>
+          <div><strong>7</strong>SUBJECT ENGINES AT LAUNCH</div>
+          <div><strong>0</strong>AI-TRIGGERED MASTERY WRITES</div>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <svg viewBox="0 0 520 520" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="hg" cx="50%" cy="45%" r="60%">
+              <stop offset="0%" stop-color="#171B26"/>
+              <stop offset="100%" stop-color="#0B0E14"/>
+            </radialGradient>
+          </defs>
+          <circle cx="260" cy="260" r="255" fill="url(#hg)"/>
+          <circle cx="260" cy="260" r="190" fill="none" stroke="#242A36" stroke-width="1"/>
+          <circle cx="260" cy="260" r="190" fill="none" stroke="#C9A24B" stroke-width="1.5" stroke-dasharray="1 10" stroke-linecap="round">
+            <animateTransform attributeName="transform" type="rotate" from="0 260 260" to="360 260 260" dur="34s" repeatCount="indefinite"/>
+          </circle>
+          <g font-family="'IBM Plex Mono',monospace" font-size="10.5" fill="#E4C878" letter-spacing="1">
+            <g>
+              <circle cx="260" cy="70" r="34" fill="#12161F" stroke="#C9A24B" stroke-width="1.5"/>
+              <text x="260" y="74" text-anchor="middle">DIAGNOSE</text>
+            </g>
+            <g>
+              <circle cx="410" cy="150" r="34" fill="#12161F" stroke="#C9A24B" stroke-width="1.5"/>
+              <text x="410" y="154" text-anchor="middle">TEACH</text>
+            </g>
+            <g>
+              <circle cx="410" cy="370" r="34" fill="#12161F" stroke="#C9A24B" stroke-width="1.5"/>
+              <text x="410" y="154" text-anchor="middle" transform="translate(0,220)">ASSESS</text>
+            </g>
+            <g>
+              <circle cx="260" cy="450" r="34" fill="#12161F" stroke="#C9A24B" stroke-width="2"/>
+              <text x="260" y="454" text-anchor="middle" font-weight="700">MASTER</text>
+            </g>
+            <g>
+              <circle cx="110" cy="370" r="34" fill="#12161F" stroke="#C9A24B" stroke-width="1.5"/>
+              <text x="110" y="374" text-anchor="middle">RETAIN</text>
+            </g>
+            <g>
+              <circle cx="110" cy="150" r="34" fill="#12161F" stroke="#C9A24B" stroke-width="1.5"/>
+              <text x="110" y="154" text-anchor="middle">PRACTICE</text>
+            </g>
+          </g>
+          <circle cx="260" cy="260" r="78" fill="#0B0E14" stroke="#3A3220"/>
+          <circle cx="260" cy="260" r="70" fill="none" stroke="#C9A24B" stroke-width="1"/>
+          <text x="260" y="252" text-anchor="middle" fill="#8E8878" font-family="'IBM Plex Mono',monospace" font-size="8.5" letter-spacing="2.5">EVIDENCE</text>
+          <text x="260" y="272" text-anchor="middle" fill="#E4C878" font-family="'IBM Plex Mono',monospace" font-size="12.5" letter-spacing="1" font-weight="700">NOT COMPLETION</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE PROBLEM ============ -->
+  <section id="problem">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">01 — THE CONSTITUTIONAL INVARIANT</div>
+        <h2>A learner does not master a concept because they opened it.</h2>
+      </div>
+      <div class="evidence-panel">
+        <div class="evidence-copy">
+          <p>Most learning software confuses <strong>exposure</strong> with <strong>understanding</strong>. A lesson opened, a video watched, a page scrolled to the bottom — none of it is evidence that a learner can actually do the thing. Emeritus starts from the opposite premise: a concept only advances when a learner has demonstrated it, and that demonstration is graded by a trusted server, not a browser event.</p>
+          <p>This shows up immediately once you look at a single learner's numbers side by side. <strong>School grade, demonstrated mastery, retention, and readiness</strong> are four different measurements, and they are allowed to disagree — because in a real classroom, they usually do.</p>
+        </div>
+        <div class="metric-card">
+          <div class="metric-row">
+            <span class="metric-label">SCHOOL GRADE</span>
+            <span class="metric-value">92%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">DEMONSTRATED MASTERY</span>
+            <span class="metric-value gap">76%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">RETENTION (90-DAY)</span>
+            <span class="metric-value gap">71%</span>
+          </div>
+          <div class="metric-row">
+            <span class="metric-label">READINESS FOR NEXT UNIT</span>
+            <span class="metric-value gap">73%</span>
+          </div>
+          <p class="metric-note">Illustrative learner profile. Emeritus never collapses these into a single number — each is computed independently from evidence, and the gaps between them are exactly what educators and guardians need to see.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ THE MASTERY LOOP ============ -->
+  <section id="loop" class="loop-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">02 — THE RUNTIME</div>
+        <h2>Every topic runs the same loop, at a pace the learner can bear.</h2>
+        <p>No screen, subject, or grade skips this sequence. What changes by grade band is the modality — how a six-year-old proves understanding looks nothing like how a junior in AP Government does, but both pass through the same evidence gate.</p>
+      </div>
+      <div class="loop-grid">
+        <div class="loop-diagram" id="loop-svg-mount">
+<svg viewBox="0 0 840 900" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono', 'Courier New', monospace">
+  <defs>
+    <radialGradient id="bgGlow" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#171B26"/>
+      <stop offset="100%" stop-color="#0B0E14"/>
+    </radialGradient>
+    <marker id="arrowBrass" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#C9A24B"/>
+    </marker>
+    <marker id="arrowBurg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#B4535F"/>
+    </marker>
+    <filter id="soft" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect x="0" y="0" width="840" height="900" fill="url(#bgGlow)"/>
+
+  <text x="420" y="58" text-anchor="middle" fill="#E4C878" font-size="13" letter-spacing="4">EMERITUS &#183; K&#8211;12 ADAPTIVE MASTERY LEARNING OS</text>
+  <text x="420" y="86" text-anchor="middle" fill="#F3EDDD" font-size="22" letter-spacing="3" font-weight="600">THE MASTERY LOOP</text>
+
+  <!-- outer ring -->
+  <circle cx="420" cy="480" r="300" fill="none" stroke="#2A2F3A" stroke-width="1.5"/>
+  <circle cx="420" cy="480" r="300" fill="none" stroke="#C9A24B" stroke-width="2" stroke-dasharray="1 11" stroke-linecap="round"/>
+
+  <!-- directional arc segments (clockwise) with arrowheads -->
+  <path d="M 561.2 267.9 A 300 300 0 0 1 691.9 480" fill="none" stroke="#7C6430" stroke-width="2" marker-end="url(#arrowBrass)"/>
+  <path d="M 691.9 480 A 300 300 0 0 1 561.2 692.1" fill="none" stroke="#7C6430" stroke-width="2" marker-end="url(#arrowBrass)"/>
+  <path d="M 561.2 692.1 A 300 300 0 0 1 278.8 692.1" fill="none" stroke="#7C6430" stroke-width="2" marker-end="url(#arrowBrass)"/>
+  <path d="M 278.8 692.1 A 300 300 0 0 1 148.1 480" fill="none" stroke="#7C6430" stroke-width="2" marker-end="url(#arrowBrass)"/>
+  <path d="M 148.1 480 A 300 300 0 0 1 278.8 267.9" fill="none" stroke="#7C6430" stroke-width="2" marker-end="url(#arrowBrass)"/>
+  <path d="M 278.8 267.9 A 300 300 0 0 1 420 180" fill="none" stroke="#7C6430" stroke-width="2" marker-end="url(#arrowBrass)"/>
+  <path d="M 420 180 A 300 300 0 0 1 561.2 267.9" fill="none" stroke="#7C6430" stroke-width="2" marker-end="url(#arrowBrass)"/>
+
+  <!-- remediation chord: ASSESS back to TEACH -->
+  <path d="M 267.9 692.1 C 220 500, 320 320, 592.1 267.9" fill="none" stroke="#B4535F" stroke-width="1.75" stroke-dasharray="6 5" marker-end="url(#arrowBurg)"/>
+  <rect x="215" y="383" width="170" height="34" rx="4" fill="#0B0E14" stroke="#4A2A30" stroke-width="1"/>
+  <text x="300" y="397" text-anchor="middle" fill="#C97783" font-size="9.5" letter-spacing="0.5">MISCONCEPTION</text>
+  <text x="300" y="411" text-anchor="middle" fill="#C97783" font-size="9.5" letter-spacing="0.5">DETECTED &#8594; REMEDIATE</text>
+
+  <!-- retention branch: RETAIN loops back to DIAGNOSE (review cadence note) -->
+  <rect x="216" y="152" width="148" height="22" rx="4" fill="#0B0E14" stroke="#3A3220" stroke-width="1"/>
+  <text x="290" y="167" text-anchor="middle" fill="#8E8878" font-size="9.5" letter-spacing="0.5">REVIEW DUE IN N DAYS</text>
+
+  <!-- Node group template applied per node -->
+  <!-- 1 DIAGNOSE -->
+  <g filter="url(#soft)">
+    <circle cx="420" cy="180" r="52" fill="#12161F" stroke="#C9A24B" stroke-width="2"/>
+    <text x="420" y="172" text-anchor="middle" fill="#E4C878" font-size="10.5" letter-spacing="1">01</text>
+    <text x="420" y="192" text-anchor="middle" fill="#F3EDDD" font-size="13.5" font-weight="600" letter-spacing="0.5">DIAGNOSE</text>
+  </g>
+
+  <!-- 2 TEACH -->
+  <g filter="url(#soft)">
+    <circle cx="592.1" cy="267.9" r="52" fill="#12161F" stroke="#C9A24B" stroke-width="2"/>
+    <text x="592.1" y="259.9" text-anchor="middle" fill="#E4C878" font-size="10.5" letter-spacing="1">02</text>
+    <text x="592.1" y="279.9" text-anchor="middle" fill="#F3EDDD" font-size="13.5" font-weight="600" letter-spacing="0.5">TEACH</text>
+  </g>
+
+  <!-- 3 SHOW & INTERACT -->
+  <g filter="url(#soft)">
+    <circle cx="680" cy="480" r="52" fill="#12161F" stroke="#C9A24B" stroke-width="2"/>
+    <text x="680" y="466" text-anchor="middle" fill="#E4C878" font-size="10.5" letter-spacing="1">03</text>
+    <text x="680" y="483" text-anchor="middle" fill="#F3EDDD" font-size="12" font-weight="600" letter-spacing="0.5">SHOW &amp;</text>
+    <text x="680" y="498" text-anchor="middle" fill="#F3EDDD" font-size="12" font-weight="600" letter-spacing="0.5">INTERACT</text>
+  </g>
+
+  <!-- 4 COMPREHEND -->
+  <g filter="url(#soft)">
+    <circle cx="592.1" cy="692.1" r="52" fill="#12161F" stroke="#C9A24B" stroke-width="2"/>
+    <text x="592.1" y="684.1" text-anchor="middle" fill="#E4C878" font-size="10.5" letter-spacing="1">04</text>
+    <text x="592.1" y="703" text-anchor="middle" fill="#F3EDDD" font-size="12.5" font-weight="600" letter-spacing="0.5">COMPREHEND</text>
+  </g>
+
+  <!-- 5 PRACTICE & APPLY -->
+  <g filter="url(#soft)">
+    <circle cx="420" cy="780" r="52" fill="#12161F" stroke="#C9A24B" stroke-width="2"/>
+    <text x="420" y="772" text-anchor="middle" fill="#E4C878" font-size="10.5" letter-spacing="1">05</text>
+    <text x="420" y="789" text-anchor="middle" fill="#F3EDDD" font-size="12" font-weight="600" letter-spacing="0.5">PRACTICE &amp;</text>
+    <text x="420" y="804" text-anchor="middle" fill="#F3EDDD" font-size="12" font-weight="600" letter-spacing="0.5">APPLY</text>
+  </g>
+
+  <!-- 6 ASSESS -->
+  <g filter="url(#soft)">
+    <circle cx="247.9" cy="692.1" r="52" fill="#12161F" stroke="#C9A24B" stroke-width="2"/>
+    <text x="247.9" y="684.1" text-anchor="middle" fill="#E4C878" font-size="10.5" letter-spacing="1">06</text>
+    <text x="247.9" y="703" text-anchor="middle" fill="#F3EDDD" font-size="13.5" font-weight="600" letter-spacing="0.5">ASSESS</text>
+  </g>
+
+  <!-- 7 MASTER -->
+  <g filter="url(#soft)">
+    <circle cx="160" cy="480" r="52" fill="#12161F" stroke="#C9A24B" stroke-width="2.5"/>
+    <text x="160" y="472" text-anchor="middle" fill="#E4C878" font-size="10.5" letter-spacing="1">07</text>
+    <text x="160" y="491" text-anchor="middle" fill="#F3EDDD" font-size="13.5" font-weight="700" letter-spacing="0.5">MASTER</text>
+  </g>
+
+  <!-- 8 RETAIN -->
+  <g filter="url(#soft)">
+    <circle cx="247.9" cy="267.9" r="52" fill="#12161F" stroke="#C9A24B" stroke-width="2"/>
+    <text x="247.9" y="259.9" text-anchor="middle" fill="#E4C878" font-size="10.5" letter-spacing="1">08</text>
+    <text x="247.9" y="279.9" text-anchor="middle" fill="#F3EDDD" font-size="13.5" font-weight="600" letter-spacing="0.5">RETAIN</text>
+  </g>
+
+  <!-- center emblem -->
+  <circle cx="420" cy="480" r="95" fill="#0B0E14" stroke="#3A3220" stroke-width="1"/>
+  <circle cx="420" cy="480" r="86" fill="none" stroke="#C9A24B" stroke-width="1"/>
+  <text x="420" y="466" text-anchor="middle" fill="#8E8878" font-size="10" letter-spacing="3">EVIDENCE</text>
+  <text x="420" y="486" text-anchor="middle" fill="#E4C878" font-size="15" letter-spacing="1.5" font-weight="700">NOT</text>
+  <text x="420" y="508" text-anchor="middle" fill="#E4C878" font-size="15" letter-spacing="1.5" font-weight="700">COMPLETION</text>
+
+  <!-- caption -->
+  <text x="420" y="855" text-anchor="middle" fill="#6E695E" font-size="12" letter-spacing="0.5">A concept is never marked mastered because it was viewed &#8212; only because it was demonstrated, retested, and retained.</text>
+  <text x="420" y="878" text-anchor="middle" fill="#4A473F" font-size="10.5" letter-spacing="2">CONSTITUTIONAL INVARIANT &#183; SECTION 1</text>
+</svg>
+
+</div>
+        <ol class="loop-steps">
+          <li><span class="loop-num">01</span><div><h3>Diagnose</h3><p>Check prerequisites and prior evidence before teaching anything new — repeating a lesson the learner already has is wasted time.</p></div></li>
+          <li><span class="loop-num">02</span><div><h3>Teach</h3><p>Deliver instruction at the reading level, density, and modality the pedagogy policy engine determines for this learner, right now.</p></div></li>
+          <li><span class="loop-num">03</span><div><h3>Show &amp; interact</h3><p>Illustrations, diagrams, manipulatives, and simulations the learner can manipulate — not decoration, but a teaching surface in its own right.</p></div></li>
+          <li><span class="loop-num">04</span><div><h3>Comprehend</h3><p>A checkpoint before independent practice: recognition, recall, or application, matched to what's developmentally reasonable to ask.</p></div></li>
+          <li><span class="loop-num">05</span><div><h3>Practice &amp; apply</h3><p>Guided practice fades into independent application, with confidence captured alongside correctness wherever that's meaningful.</p></div></li>
+          <li><span class="loop-num">06</span><div><h3>Assess</h3><p>Server-side evaluation only. A learner's browser is never the source of truth for whether an answer was right.</p></div></li>
+          <li><span class="loop-num">07</span><div><h3>Master — or remediate</h3><p>Strong evidence advances the learner. Weak evidence routes to misconception detection and a different instructional strategy — not the same lesson again.</p></div></li>
+          <li><span class="loop-num">08</span><div><h3>Retain</h3><p>Mastered concepts re-enter the loop on a spaced schedule. Mastery that isn't retained is downgraded — automatically, not punitively.</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SIX ENGINES ============ -->
+  <section id="engines">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">03 — INTELLIGENCE LAYER</div>
+        <h2>Six engines decide what happens next — none of them decide it alone.</h2>
+        <p>Every adaptive decision in Emeritus is advisory until evidence confirms it. No engine can write a mastery state; only evaluated learner responses can.</p>
+      </div>
+      <div class="engine-grid">
+        <div class="engine-card">
+          <div class="engine-index">ENGINE 01</div>
+          <h3>Pedagogy Policy</h3>
+          <p>Determines language complexity, visual density, interaction type, and scaffolding for this learner, this concept, this moment — never a global difficulty slider.</p>
+        </div>
+        <div class="engine-card">
+          <div class="engine-index">ENGINE 02</div>
+          <h3>Comprehension &amp; Confidence</h3>
+          <p>Models understanding across recognition, recall, application, analysis, reasoning, and transfer — and pairs correctness with confidence to separate fragile knowledge from real gaps.</p>
+        </div>
+        <div class="engine-card">
+          <div class="engine-index">ENGINE 03</div>
+          <h3>Mastery State Machine</h3>
+          <p>Moves a concept through NEW → LEARNING → DEVELOPING → PROFICIENT → MASTERED → RETAINED, with every transition requiring evidence, not elapsed time.</p>
+        </div>
+        <div class="engine-card">
+          <div class="engine-index">ENGINE 04</div>
+          <h3>Misconception &amp; Prerequisite Diagnosis</h3>
+          <p>Treats a wrong answer as a clue, not a failure — distinguishing a careless slip from a genuine misconception from a gap two grades back.</p>
+        </div>
+        <div class="engine-card">
+          <div class="engine-index">ENGINE 05</div>
+          <h3>Adaptive Remediation</h3>
+          <p>Changes instructional strategy on repeated struggle — text to visual, visual to interactive, interactive to worked example — before ever repeating the same lesson.</p>
+        </div>
+        <div class="engine-card">
+          <div class="engine-index">ENGINE 06</div>
+          <h3>Retention &amp; Spaced Review</h3>
+          <p>Schedules review on a configurable curve and lets mastery legitimately decay into REVIEW_DUE or AT_RISK when evidence says it should.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GRADE BANDS ============ -->
+  <section id="bands">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">04 — DEVELOPMENTAL PEDAGOGY</div>
+        <h2>One curriculum graph. Four entirely different learning experiences.</h2>
+        <p>The modality changes by grade band; the evidence standard never does.</p>
+      </div>
+      <div class="band-list">
+        <div class="band-row">
+          <div class="band-tag">K–2</div>
+          <div>
+            <h3>See it, touch it, say it</h3>
+            <p class="band-desc">Understanding is shown through pointing, matching, sorting, and speaking — not typing.</p>
+          </div>
+          <p class="band-modality"><b>Leads with</b> illustrations, read-aloud, manipulatives, drag-and-drop, short interactions, immediate feedback.</p>
+        </div>
+        <div class="band-row">
+          <div class="band-tag">3–5</div>
+          <div>
+            <h3>Read, reason, explain</h3>
+            <p class="band-desc">Independent reading and multi-step reasoning enter, supported by visual models learners can lean on.</p>
+          </div>
+          <p class="band-modality"><b>Leads with</b> comprehension, vocabulary, visual models, maps, timelines, guided written response.</p>
+        </div>
+        <div class="band-row">
+          <div class="band-tag">6–8</div>
+          <div>
+            <h3>Argue with evidence</h3>
+            <p class="band-desc">Abstract reasoning and structured writing take over — claims now need to be defended with data.</p>
+          </div>
+          <p class="band-modality"><b>Leads with</b> mathematical modeling, experiments, data interpretation, evidence-based argument, projects.</p>
+        </div>
+        <div class="band-row">
+          <div class="band-tag">9–12</div>
+          <div>
+            <h3>Work like the discipline works</h3>
+            <p class="band-desc">Complex texts, laboratory reasoning, formal writing, and exam-grade rigor — building toward college and career readiness.</p>
+          </div>
+          <p class="band-modality"><b>Leads with</b> primary sources, research, source evaluation, simulation, formal argumentation, AP-level assessment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ROLES ============ -->
+  <section id="roles">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">05 — THREE EXPERIENCES, ONE TRUTH</div>
+        <h2>Students, educators, and guardians see the same evidence — shaped for what each of them needs to do with it.</h2>
+      </div>
+      <div class="role-grid">
+        <div class="role-card">
+          <div class="role-kicker">STUDENT</div>
+          <h3>What should I learn today?</h3>
+          <ul>
+            <li>A daily plan built from weak mastery, due reviews, and upcoming assessments — not a static syllabus</li>
+            <li>A knowledge map showing what's mastered, developing, at risk, or locked by prerequisite</li>
+            <li>A curriculum-grounded AI tutor that coaches instead of completing the work</li>
+          </ul>
+        </div>
+        <div class="role-card">
+          <div class="role-kicker">EDUCATOR</div>
+          <h3>Where does the class actually stand?</h3>
+          <ul>
+            <li>Concept and misconception heatmaps built from real attempt data, not self-reported progress</li>
+            <li>Standards-mastery reporting derived from evidence, mapped to the frameworks you already use</li>
+            <li>Authoring and pacing tools with final authority to override any system recommendation</li>
+          </ul>
+        </div>
+        <div class="role-card">
+          <div class="role-kicker">GUARDIAN</div>
+          <h3>Is my child actually keeping up?</h3>
+          <ul>
+            <li>A concise view of strengths, priority gaps, and retention risk — not raw telemetry</li>
+            <li>Access strictly limited to explicitly authorized guardian–learner relationships</li>
+            <li>Visibility into upcoming assessments and what's genuinely due for review</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ AI TUTOR GOVERNANCE ============ -->
+  <section id="tutor">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">06 — AI TUTOR GOVERNANCE</div>
+        <h2>A curriculum-grounded coach, deliberately kept on a short leash.</h2>
+        <p>The tutor always knows the learner's grade, current objective, standards, mastery, and active misconceptions. What it's permitted to do with that context is a hard boundary, not a prompt-level suggestion.</p>
+      </div>
+      <div class="gov-panel">
+        <div class="gov-col does">
+          <h4>THE TUTOR DOES</h4>
+          <ul>
+            <li>Guide reasoning with questions before giving answers</li>
+            <li>Offer hints scaled to grade and current struggle</li>
+            <li>Re-explain a concept through a different modality</li>
+            <li>Generate fresh practice grounded in the curriculum graph</li>
+            <li>Reference the learner's actual evidence and remediation history</li>
+          </ul>
+        </div>
+        <div class="gov-col doesnt">
+          <h4>THE TUTOR NEVER</h4>
+          <ul>
+            <li>Completes graded work on a learner's behalf</li>
+            <li>Writes a final essay or impersonates a student</li>
+            <li>Reveals protected assessment answers</li>
+            <li>Writes a mastery state directly — only evaluated evidence can</li>
+            <li>Makes unsupported high-stakes educational decisions alone</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SUBJECT PACK ============ -->
+  <section id="subjects">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">07 — LAUNCH CERTIFICATION PACK</div>
+        <h2>Seven high-school courses, certified end-to-end on day one.</h2>
+        <p>Each runs on the same shared mastery runtime while teaching in a way appropriate to its discipline.</p>
+      </div>
+      <div class="subject-strip">
+        <div class="subject-pill"><span class="sp-tag">SCI</span>Honors Biology</div>
+        <div class="subject-pill"><span class="sp-tag">ELA</span>Honors English Language &amp; Composition</div>
+        <div class="subject-pill"><span class="sp-tag">MATH</span>Advanced Quantitative Reasoning</div>
+        <div class="subject-pill"><span class="sp-tag">SOC</span>AP U.S. Government &amp; Politics</div>
+        <div class="subject-pill"><span class="sp-tag">ELA</span>Honors English Literature &amp; Composition</div>
+        <div class="subject-pill"><span class="sp-tag">WL</span>Spanish II</div>
+        <div class="subject-pill"><span class="sp-tag">PE</span>Lifetime Fitness &amp; Wellness Pursuits</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="section-eyebrow">FAQ</div>
+        <h2>Questions we get before a pilot starts.</h2>
+      </div>
+      <div class="faq-list">
+        <details open>
+          <summary>How is this different from an LMS or a video-based platform?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer">An LMS tracks whether content was opened. Emeritus tracks whether a concept was demonstrated, through server-evaluated evidence, and keeps tracking whether that understanding survives over time. It's closer to an assessment and mastery engine that happens to deliver instruction than a content library with a gradebook bolted on.</div>
+        </details>
+        <details>
+          <summary>Does the AI ever decide a student has mastered something on its own?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer">No. AI proposes — hints, explanations, remediation strategy, curriculum drafts. Mastery state only changes in response to evaluated learner evidence, computed server-side. This is a hard architectural boundary, the same invariant we hold across every product Zenith AI builds in regulated or high-stakes domains: advisory AI, human- and evidence-gated outcomes.</div>
+        </details>
+        <details>
+          <summary>What happens when a learner gets something wrong?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer">The system first asks whether it's a careless slip, a misreading, or a real gap — and if it's a gap, whether it's in this concept or a prerequisite one or two grades back. Remediation changes instructional strategy (text → visual → interactive → worked example → guided practice) rather than simply replaying the same lesson.</div>
+        </details>
+        <details>
+          <summary>How does mastery decay, and why would you want that?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer">Mastered concepts are scheduled for spaced review — 1, 3, 7, 14, 30, 60, 90 days, adjusted by evidence. A concept that fails retrieval moves to REVIEW_DUE or AT_RISK. This is deliberate: a mastery badge that never expires stops meaning anything, and readiness for the next unit depends on what's actually retained, not what was once true.</div>
+        </details>
+        <details>
+          <summary>Can a guardian see everything a student does?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer">Only through an explicitly authorized guardian–learner relationship, and only a concise readiness view — strengths, priority gaps, retention risk, upcoming assessments — not raw event-level telemetry. Object-level authorization is enforced at the platform layer, not assumed by the interface.</div>
+        </details>
+        <details>
+          <summary>What does a school need to have in place before a pilot?<span class="faq-icon">+</span></summary>
+          <div class="faq-answer">A course roster, the standards framework you report against, and one subject willing to run a real vertical slice end-to-end. We certify grade-band and subject pilots individually before expanding, following the same evidence discipline the platform itself enforces on learners.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING CTA ============ -->
+  <section id="request" class="closing" style="border-top:1px solid var(--line-soft);">
+    <div class="wrap">
+      <h2>Bring one course, one grade band, and real students.</h2>
+      <p>We certify Emeritus the same way it certifies a learner — with evidence, not a demo script.</p>
+      <div class="hero-ctas">
+        <a href="mailto:pilots@emeritus.education" class="btn-primary">Request Pilot Access</a>
+        <a href="#loop" class="btn-ghost">Review The Architecture</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="wordmark"><span class="dot"></span>EMERITUS</div>
+        <p>A K–12 Adaptive Multimodal Mastery Learning OS. Built on the constitutional invariant that content consumption is not learning.</p>
+      </div>
+      <div class="footer-col">
+        <h5>PLATFORM</h5>
+        <a href="#loop">The Mastery Loop</a>
+        <a href="#engines">Intelligence Engines</a>
+        <a href="#bands">Grade Bands</a>
+        <a href="#tutor">AI Tutor Governance</a>
+      </div>
+      <div class="footer-col">
+        <h5>AUDIENCE</h5>
+        <a href="#roles">For Students</a>
+        <a href="#roles">For Educators</a>
+        <a href="#roles">For Guardians</a>
+        <a href="#subjects">Subject Certification</a>
+      </div>
+      <div class="footer-col">
+        <h5>COMPANY</h5>
+        <a href="#faq">FAQ</a>
+        <a href="#request">Request Pilot Access</a>
+        <a href="mailto:pilots@emeritus.education">pilots@emeritus.education</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Emeritus. A Zenith AI Automation Agency build.</span>
+      <span>Evidence, not completion.</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

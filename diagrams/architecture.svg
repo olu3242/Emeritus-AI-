@@ -1,0 +1,147 @@
+<svg viewBox="0 0 1120 1260" xmlns="http://www.w3.org/2000/svg" font-family="'IBM Plex Mono','Courier New',monospace">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#12161F"/>
+      <stop offset="100%" stop-color="#0B0E14"/>
+    </linearGradient>
+    <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#C9A24B"/>
+    </marker>
+  </defs>
+  <rect width="1120" height="1260" fill="url(#bg)"/>
+
+  <text x="560" y="52" text-anchor="middle" fill="#E4C878" font-size="13" letter-spacing="4">EMERITUS &#183; SYSTEM ARCHITECTURE</text>
+  <text x="560" y="80" text-anchor="middle" fill="#F3EDDD" font-size="22" letter-spacing="2" font-weight="700">SIX LAYERS, ONE MASTERY RUNTIME</text>
+  <text x="560" y="102" text-anchor="middle" fill="#6E695E" font-size="12" letter-spacing="0.5">Every grade band and subject engine shares this same vertical stack</text>
+
+  <!-- ============ LAYER 1: EXPERIENCE ============ -->
+  <g>
+    <rect x="60" y="140" width="1000" height="110" rx="10" fill="#12161F" stroke="#3A3220" stroke-width="1.5"/>
+    <text x="86" y="168" fill="#8E8878" font-size="10.5" letter-spacing="2">LAYER 1</text>
+    <text x="86" y="188" fill="#E4C878" font-size="15" font-weight="700" letter-spacing="0.5">EXPERIENCE</text>
+    <g font-size="11.5" fill="#D8D2C4">
+      <rect x="86" y="202" width="270" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="221" y="223" text-anchor="middle">Student Home &#183; Topic Player &#183; Knowledge Map</text>
+      <rect x="376" y="202" width="270" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="511" y="223" text-anchor="middle">Educator Console &#183; Heatmaps &#183; Authoring</text>
+      <rect x="666" y="202" width="270" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="801" y="223" text-anchor="middle">Guardian View &#183; Readiness &#183; Consent</text>
+    </g>
+  </g>
+  <line x1="560" y1="250" x2="560" y2="276" stroke="#C9A24B" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ============ LAYER 2: RUNTIME ============ -->
+  <g>
+    <rect x="60" y="278" width="1000" height="110" rx="10" fill="#12161F" stroke="#3A3220" stroke-width="1.5"/>
+    <text x="86" y="306" fill="#8E8878" font-size="10.5" letter-spacing="2">LAYER 2</text>
+    <text x="86" y="326" fill="#E4C878" font-size="15" font-weight="700" letter-spacing="0.5">LEARNING RUNTIME</text>
+    <g font-size="11.5" fill="#D8D2C4">
+      <rect x="86" y="340" width="216" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="194" y="361" text-anchor="middle">Topic Player Engine</text>
+      <rect x="322" y="340" width="216" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="430" y="361" text-anchor="middle">AI Tutor Orchestrator</text>
+      <rect x="558" y="340" width="216" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="666" y="361" text-anchor="middle">Daily Plan Orchestrator</text>
+      <rect x="794" y="340" width="142" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="865" y="361" text-anchor="middle">Assessment Runtime</text>
+    </g>
+  </g>
+  <line x1="560" y1="388" x2="560" y2="414" stroke="#C9A24B" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ============ LAYER 3: INTELLIGENCE ENGINES ============ -->
+  <g>
+    <rect x="60" y="416" width="1000" height="150" rx="10" fill="#161217" stroke="#4A2A30" stroke-width="1.5"/>
+    <text x="86" y="444" fill="#C97783" font-size="10.5" letter-spacing="2">LAYER 3 &#183; GOVERNED &#183; ADVISORY-ONLY</text>
+    <text x="86" y="464" fill="#E4C878" font-size="15" font-weight="700" letter-spacing="0.5">INTELLIGENCE ENGINES</text>
+    <g font-size="11" fill="#D8D2C4">
+      <rect x="86" y="478" width="140" height="66" rx="6" fill="#1C1620" stroke="#3A2530"/>
+      <text x="156" y="500" text-anchor="middle">Pedagogy</text><text x="156" y="516" text-anchor="middle">Policy</text>
+      <rect x="238" y="478" width="140" height="66" rx="6" fill="#1C1620" stroke="#3A2530"/>
+      <text x="308" y="500" text-anchor="middle">Comprehension</text><text x="308" y="516" text-anchor="middle">&amp; Confidence</text>
+      <rect x="390" y="478" width="140" height="66" rx="6" fill="#1C1620" stroke="#3A2530"/>
+      <text x="460" y="500" text-anchor="middle">Mastery</text><text x="460" y="516" text-anchor="middle">State Machine</text>
+      <rect x="542" y="478" width="140" height="66" rx="6" fill="#1C1620" stroke="#3A2530"/>
+      <text x="612" y="500" text-anchor="middle">Misconception</text><text x="612" y="516" text-anchor="middle">&amp; Prerequisite Dx</text>
+      <rect x="694" y="478" width="140" height="66" rx="6" fill="#1C1620" stroke="#3A2530"/>
+      <text x="764" y="500" text-anchor="middle">Adaptive</text><text x="764" y="516" text-anchor="middle">Remediation</text>
+      <rect x="846" y="478" width="140" height="66" rx="6" fill="#1C1620" stroke="#3A2530"/>
+      <text x="916" y="500" text-anchor="middle">Retention</text><text x="916" y="516" text-anchor="middle">&amp; Spaced Review</text>
+    </g>
+    <text x="560" y="558" text-anchor="middle" fill="#8E5D63" font-size="10" letter-spacing="0.5">Hard invariant: no AI-triggered mastery writes &#8212; every state change requires evaluated evidence</text>
+  </g>
+  <line x1="560" y1="566" x2="560" y2="592" stroke="#C9A24B" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ============ LAYER 4: DOMAIN CORE ============ -->
+  <g>
+    <rect x="60" y="594" width="1000" height="130" rx="10" fill="#12161F" stroke="#3A3220" stroke-width="1.5"/>
+    <text x="86" y="622" fill="#8E8878" font-size="10.5" letter-spacing="2">LAYER 4</text>
+    <text x="86" y="642" fill="#E4C878" font-size="15" font-weight="700" letter-spacing="0.5">CURRICULUM &amp; DOMAIN CORE</text>
+    <g font-size="11" fill="#D8D2C4">
+      <rect x="86" y="656" width="200" height="46" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="186" y="672" text-anchor="middle">Curriculum Graph</text>
+      <text x="186" y="688" text-anchor="middle" fill="#8E8878" font-size="9.5">Unit &#8594; Topic &#8594; Concept &#8594; Skill</text>
+      <rect x="298" y="656" width="200" height="46" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="398" y="672" text-anchor="middle">Standards Alignment</text>
+      <text x="398" y="688" text-anchor="middle" fill="#8E8878" font-size="9.5">State &#183; Common Core &#183; AP &#183; NGSS</text>
+      <rect x="510" y="656" width="200" height="46" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="610" y="672" text-anchor="middle">Prerequisite Graph</text>
+      <text x="610" y="688" text-anchor="middle" fill="#8E8878" font-size="9.5">Cross-grade dependency DAG</text>
+      <rect x="722" y="656" width="212" height="46" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="828" y="672" text-anchor="middle">Subject Engines</text>
+      <text x="828" y="688" text-anchor="middle" fill="#8E8878" font-size="9.5">Math &#183; ELA &#183; Science &#183; Soc. Studies &#183; WL &#183; PE</text>
+    </g>
+  </g>
+  <line x1="560" y1="724" x2="560" y2="750" stroke="#C9A24B" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ============ LAYER 5: PLATFORM FOUNDATION ============ -->
+  <g>
+    <rect x="60" y="752" width="1000" height="110" rx="10" fill="#12161F" stroke="#3A3220" stroke-width="1.5"/>
+    <text x="86" y="780" fill="#8E8878" font-size="10.5" letter-spacing="2">LAYER 5</text>
+    <text x="86" y="800" fill="#E4C878" font-size="15" font-weight="700" letter-spacing="0.5">PLATFORM FOUNDATION</text>
+    <g font-size="11" fill="#D8D2C4">
+      <rect x="86" y="814" width="216" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="194" y="835" text-anchor="middle">Identity &amp; Roles</text>
+      <rect x="322" y="814" width="216" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="430" y="835" text-anchor="middle">Enrollment &amp; Relationships</text>
+      <rect x="558" y="814" width="216" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="666" y="835" text-anchor="middle">Object-Level Authorization</text>
+      <rect x="794" y="814" width="142" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="865" y="835" text-anchor="middle">Event Bus</text>
+    </g>
+  </g>
+  <line x1="560" y1="862" x2="560" y2="888" stroke="#C9A24B" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ============ LAYER 6: PERSISTENCE & OBSERVABILITY ============ -->
+  <g>
+    <rect x="60" y="890" width="1000" height="110" rx="10" fill="#12161F" stroke="#3A3220" stroke-width="1.5"/>
+    <text x="86" y="918" fill="#8E8878" font-size="10.5" letter-spacing="2">LAYER 6</text>
+    <text x="86" y="938" fill="#E4C878" font-size="15" font-weight="700" letter-spacing="0.5">PERSISTENCE &amp; OBSERVABILITY</text>
+    <g font-size="11" fill="#D8D2C4">
+      <rect x="86" y="952" width="216" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="194" y="973" text-anchor="middle">Postgres &#183; RLS &#183; Migrations</text>
+      <rect x="322" y="952" width="216" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="430" y="973" text-anchor="middle">Append-Only Audit Chain</text>
+      <rect x="558" y="952" width="216" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="666" y="973" text-anchor="middle">Analytics &amp; Readiness Store</text>
+      <rect x="794" y="952" width="142" height="34" rx="6" fill="#181D28" stroke="#2A2F3A"/>
+      <text x="865" y="973" text-anchor="middle">Observability</text>
+    </g>
+  </g>
+
+  <!-- side rail: cross-cutting concerns -->
+  <g>
+    <rect x="60" y="1030" width="1000" height="130" rx="10" fill="#0F1319" stroke="#2A2F3A" stroke-width="1" stroke-dasharray="3 4"/>
+    <text x="86" y="1058" fill="#8E8878" font-size="10.5" letter-spacing="2">CROSS-CUTTING &#183; APPLIES TO EVERY LAYER</text>
+    <g font-size="11" fill="#B8B2A4">
+      <text x="106" y="1084">&#8226; Accessibility (WCAG semantics, TTS/STT, reduced motion)</text>
+      <text x="106" y="1104">&#8226; Student privacy &amp; least-privilege access</text>
+      <text x="106" y="1124">&#8226; Curriculum versioning (draft &#8594; published &#8594; archived, never mutated retroactively)</text>
+      <text x="606" y="1084">&#8226; Server-side evaluation only &#8212; no client-trusted scoring</text>
+      <text x="606" y="1104">&#8226; No AI-triggered mastery or fund/grade writes</text>
+      <text x="606" y="1124">&#8226; Idempotency keys on every write path</text>
+    </g>
+  </g>
+
+  <text x="560" y="1200" text-anchor="middle" fill="#6E695E" font-size="12">Learner &#8594; Educator &#8594; Guardian evidence propagation is enforced at Layer 5, not assumed by the UI.</text>
+  <text x="560" y="1222" text-anchor="middle" fill="#4A473F" font-size="10.5" letter-spacing="2">EMERITUS ARCHITECTURE &#183; v1.0</text>
+</svg>

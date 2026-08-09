@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "1.0",
+  "package": {
+    "stableId": "fixture.us.base", "title": "US Package Architecture Fixture", "authorityStableId": "fixture-us-authority",
+    "countryCode": "US", "version": "2026-fixture", "effectiveFrom": "2026-01-01",
+    "terminology": { "level": "Grade", "subject": "Subject", "standard": "Standard" },
+    "policies": { "structure": "grade-and-course", "overlay": "jurisdiction" },
+    "provenance": { "sourceUrl": "https://example.invalid/us-fixture", "sourceTitle": "Synthetic US architecture fixture", "publisher": "Emeritus test suite", "licenseId": "CC0-1.0", "retrievedAt": "2026-08-09T12:00:00.000Z", "authoritative": false }
+  },
+  "nodes": [
+    { "stableId": "fixture.us.math.k", "kind": "standard", "code": "FIX.K.1", "title": "Synthetic kindergarten mathematics requirement", "level": "K", "subject": "mathematics", "provenance": { "sourceUrl": "https://example.invalid/us-fixture", "sourceTitle": "Synthetic US architecture fixture", "publisher": "Emeritus test suite", "licenseId": "CC0-1.0", "retrievedAt": "2026-08-09T12:00:00.000Z", "authoritative": false } },
+    { "stableId": "fixture.us.math.k.objective", "kind": "objective", "title": "Synthetic aligned objective", "level": "K", "subject": "mathematics", "provenance": { "sourceUrl": "https://example.invalid/us-fixture", "sourceTitle": "Synthetic US architecture fixture", "publisher": "Emeritus test suite", "licenseId": "CC0-1.0", "retrievedAt": "2026-08-09T12:00:00.000Z", "authoritative": false } }
+  ],
+  "relationships": [{ "stableId": "fixture.us.align.1", "fromStableId": "fixture.us.math.k", "toStableId": "fixture.us.math.k.objective", "kind": "aligns_to" }]
+}
