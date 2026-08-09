@@ -1,6 +1,7 @@
 import { Client } from "pg";
 import { readdir,readFile } from "node:fs/promises";
 import { resolve } from "node:path";
+import { appendFileSync } from "node:fs";
 
 async function main(){
   const url=process.env.TEST_DATABASE_URL;
@@ -33,4 +34,12 @@ async function main(){
     process.stdout.write(`verified ${recorded.rowCount} migration records\n`);
   } finally { await client.end(); }
 }
-main().catch(error=>{console.error(error instanceof Error?error.message:error);process.exitCode=1;});
+main().catch(error=>{
+  const message=(error instanceof Error?error.message:String(error)).replace(/[\r\n]+/g," ").replace(/postgres(?:ql)?:\/\/\S+/gi,"[REDACTED_DATABASE_URL]");
+  console.error(message);
+  if(process.env.CI==="true"){
+    process.stderr.write(`::error title=Database migration certification failed::${message}\n`);
+    if(process.env.GITHUB_STEP_SUMMARY)appendFileSync(process.env.GITHUB_STEP_SUMMARY,`## Database migration failure\n\n${message}\n`);
+  }
+  process.exitCode=1;
+});
