@@ -19,7 +19,12 @@ async function main(){
     for(const file of files){
       const prior=await client.query("select 1 from public.emeritus_test_migrations where id=$1",[file]);
       if(prior.rowCount) throw new Error(`Refusing reapplication: migration already recorded: ${file}`);
-      await client.query(await readFile(resolve(directory,file),"utf8"));
+      try{await client.query(await readFile(resolve(directory,file),"utf8"));}
+      catch(error){
+        const message=(error instanceof Error?error.message:String(error)).replace(/[\r\n]+/g," ").replace(/postgres(?:ql)?:\/\/\S+/gi,"[REDACTED_DATABASE_URL]");
+        if(process.env.CI==="true")process.stderr.write(`::error file=supabase/migrations/${file},title=Migration failed::${message}\n`);
+        throw error;
+      }
       await client.query("insert into public.emeritus_test_migrations(id) values($1)",[file]);
       process.stdout.write(`applied ${file}\n`);
     }
