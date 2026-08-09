@@ -13,6 +13,7 @@ on:
       - "tests/integration/**"
       - "scripts/apply-test-migrations.ts"
       - "scripts/run-load-profile.ts"
+      - "scripts/test-upgrade-migration.ts"
       - ".github/workflows/iteration-1-database-certification.yml"
   pull_request:
     paths:
@@ -23,6 +24,7 @@ on:
       - "tests/integration/**"
       - "scripts/apply-test-migrations.ts"
       - "scripts/run-load-profile.ts"
+      - "scripts/test-upgrade-migration.ts"
       - ".github/workflows/iteration-1-database-certification.yml"
 
 permissions:
@@ -68,6 +70,8 @@ jobs:
         run: npm run db:test:migrate
       - name: Run PostgreSQL and RLS certification
         run: npm run test:integration
+      - name: Validate forward upgrade from prior certified schema
+        run: npm run test:migration:upgrade
       - name: Run small non-certifying load harness
         run: npm run test:load:small
       - name: Run non-live regression

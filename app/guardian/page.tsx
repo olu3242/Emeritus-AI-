@@ -1,0 +1,1 @@
+import RoleDashboard from"../components/RoleDashboard";export default function GuardianPage(){return <RoleDashboard role="Guardian" action="guardian-dashboard" description="View active learner relationships, assignment progress, effective mastery, approved recommendations, remediation, reassessment, enrichment, and guardian-visible guidance."/>}

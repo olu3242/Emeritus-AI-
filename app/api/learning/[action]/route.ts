@@ -15,6 +15,8 @@ const procedures={
   "submit-reassessment":"submit_remediation_reassessment",
   "resolve-remediation":"resolve_remediation",
   "no-content":"mark_recommendation_no_content",
+  "guardian-dashboard":"guardian_dashboard",
+  "administrator-dashboard":"administrator_dashboard",
 }as const;
 
 export async function POST(request:NextRequest,{params}:{params:Promise<{action:string}>}){

@@ -34,6 +34,7 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "test:load:small": "tsx scripts/run-load-profile.ts --profile=small-ci",
+    "test:migration:upgrade": "tsx scripts/test-upgrade-migration.ts",
     "audit:production": "npm audit --omit=dev --omit=optional --audit-level=high",
     "db:migrate": "supabase migration up",
     "db:migrate:new": "supabase migration new",

@@ -1,0 +1,1 @@
+import RoleDashboard from"../components/RoleDashboard";export default function AdministratorPage(){return <RoleDashboard role="Administrator" action="administrator-dashboard" description="Inspect bounded tenant operations, assignment and scoring state, override governance, workflow failures, and safe audit summaries."/>}
