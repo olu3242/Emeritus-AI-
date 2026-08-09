@@ -1,24 +1,24 @@
 {
   "iteration": 2,
   "scope": "completion and final certification pass",
-  "verdict": "ITERATION 2 PARTIALLY IMPLEMENTED — LISTED REQUIREMENTS REMAIN",
-  "testedCommit": "c63121de87da25dc3284d3e9de94bdf13b9e1e31",
-  "workflowRun": 31340719340,
-  "workflowUrl": "https://github.com/olu3242/Emeritus-AI-/actions/runs/31340719340",
+  "verdict": "ITERATION 2 IMPLEMENTED — HUMAN VALIDATION OR LIVE CERTIFICATION INCOMPLETE",
+  "testedCommit": "fe8e11e0242af1648c1776c9f5ed2faba7d64b8c",
+  "workflowRun": 31341528923,
+  "workflowUrl": "https://github.com/olu3242/Emeritus-AI-/actions/runs/31341528923",
   "jobs": [
     {
-      "id": 93313911210,
+      "id": 93316004424,
       "name": "Clean PostgreSQL run 1",
       "conclusion": "success",
-      "startedAt": "2026-08-09T22:58:13Z",
-      "completedAt": "2026-08-09T23:00:03Z"
+      "startedAt": "2026-08-09T23:17:27Z",
+      "completedAt": "2026-08-09T23:19:18Z"
     },
     {
-      "id": 93313911225,
+      "id": 93316004382,
       "name": "Clean PostgreSQL run 2",
       "conclusion": "success",
-      "startedAt": "2026-08-09T22:58:13Z",
-      "completedAt": "2026-08-09T22:59:55Z"
+      "startedAt": "2026-08-09T23:17:27Z",
+      "completedAt": "2026-08-09T23:19:12Z"
     }
   ],
   "passedInEachJob": [
@@ -26,14 +26,15 @@
     "PostgreSQL and RLS certification",
     "remediation and reassessment PostgreSQL scenario",
     "replay-safe score and mastery invariants",
-    "15-test PostgreSQL adversarial security and concurrency suite",
+    "17-test PostgreSQL suite including guardian and administrator authorization",
+    "committed-history 11-to-12 upgrade with data preservation",
     "60-request non-certifying load smoke",
     "13-test non-live regression",
     "typecheck",
     "lint",
     "production build",
     "accessibility browser installation",
-    "4-test accessibility and workflow E2E",
+    "7-test accessibility and role-workflow E2E",
     "container cleanup"
   ],
   "failedPredecessor": {
@@ -45,7 +46,7 @@
   "remaining": [
     "authorized owner acceptance or framework remediation for mitigated optional sharp/libvips residual risk",
     "qualified manual screen-reader, zoom, high-contrast, and assistive-technology review",
-    "role-specific production UX and real-use validation",
+    "external teacher, learner, guardian, and administrator real-user validation",
     "exhaustive adversarial security matrix beyond tested tenant, role, RLS, IDOR, answer protection, and replay cases",
     "sustained load profiles with agreed operational thresholds"
   ],

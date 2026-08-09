@@ -13,7 +13,7 @@ Verified lineage: Iteration 2 slice commit `16f7f90d2d7d1f14ee16bf177192062d4dd5
 | Human rubric scoring | Automated pass | Versioned rubrics, immutable score revisions, role checks, and audit events | Unauthorized denial and authorized scoring passed twice |
 | Mastery and teacher override | Automated pass | Deterministic mastery plus append-only override history and rationale | Live mastery/override cases passed twice |
 | Remediation, reassessment, enrichment | Live PostgreSQL validated | Version-pinned remediation assignment, pause/resume/completion, authorized reassessment, replay-safe scoring, deterministic evidence, resolution/continuation, audit and outbox | Full automated loop passed in jobs `93308461586` and `93308461574`; external real-user validation remains unavailable |
-| Operational interfaces | Partial | Authenticated `/learning` console and allowlisted `/api/learning/[action]` RPC gateway | Build and automated browser checks passed twice; role-specific production UX remains unproven |
+| Operational interfaces | Automatically validated | Teacher/learner operations plus connected guardian and tenant-scoped administrator applications using allowlisted PostgreSQL RPCs | 17 PostgreSQL and 7 browser tests passed twice; external real-user UX remains unvalidated |
 | Accessibility | Partial | Semantic UI, keyboard skip navigation, labels/status, responsive/reduced-motion CSS, axe Playwright suite | Linux accessibility E2E passed twice; required human AT review not performed |
 | Security and concurrency | Automated core pass | RLS, function-level role checks, bearer-auth gateway, optimistic lock, idempotency, and audit/outbox persistence | Clean PostgreSQL/RLS suite passed twice; exhaustive adversarial/scale matrix remains unproven |
 | Dependency security | Awaiting owner decision | Image optimizer disabled; no image-processing route/import; production-reachability audit passes | Bundled optional `sharp` residual risk requires owner acceptance or framework remediation |
@@ -44,12 +44,19 @@ Verified lineage: Iteration 2 slice commit `16f7f90d2d7d1f14ee16bf177192062d4dd5
 - Workflow: `31340719340`; jobs `93313911210` and `93313911225`, both successful with cleanup and no failed step.
 - Per job: 11 migrations, 15 PostgreSQL/RLS/security/concurrency tests, 13 unit tests, 60-request non-certifying load smoke, typecheck, lint, production build, production-reachability audit, and four browser accessibility/workflow tests.
 - Failed predecessor runs `31339119149`, `31339264541`, `31340355145`, `31340407151`, and `31340495171` remain preserved and led to corrected optional-dependency handling, portable test configuration, RLS filtered-update semantics, CommonJS load execution, and mobile reflow.
-- Repository-resolvable automated gates are green. Connected guardian/administrator production UX, qualified accessibility, external real-user validation, sustained authorized load, and dependency residual-risk approval remain open.
+- That terminal run preceded role-application completion; its guardian/administrator gap is superseded by the evidence below.
 
 ## Certification decision
 
-Automated repository certification, including the persisted remediation/reassessment loop, is green. The stated exit gate still requires evidence unavailable from this coding run: qualified manual assistive-technology review, production-quality role-specific UX with external real-user validation, and sustained adversarial/load certification. Those requirements cannot be inferred from axe, build, database, or replay-test success.
-
-Current verdict: `ITERATION 2 PARTIALLY IMPLEMENTED — LISTED REQUIREMENTS REMAIN`
+Automated repository certification, including the persisted remediation/reassessment loop and connected role applications, is green. The stated exit gate still requires qualified manual assistive-technology review, external real-user validation, sustained authorized load certification, and an owner decision on mitigated dependency risk.
 
 Iteration 3 remains blocked. The certification phrase `ITERATION 2 CERTIFIED — PERSISTED LEARNING AND MASTERY LOOP OPERATIONAL` is intentionally not issued.
+
+## Role-application completion
+
+- Tested commit: `fe8e11e0242af1648c1776c9f5ed2faba7d64b8c`.
+- Workflow `31341528923`; PostgreSQL 15 jobs `93316004424` and `93316004382`, both successful without a failed required step.
+- Per job: 12 migrations, 17 PostgreSQL/RLS/role/security/concurrency tests, committed-history 11→12 upgrade with data preservation, 13 unit tests, 60-request smoke load, typecheck, lint, production build, production-reachability audit, seven browser tests, and cleanup.
+- Repository-controlled guardian and administrator application gaps are closed. Remaining gates require authorized owners: qualified accessibility, representative real-user validation, sustained staging load with approved thresholds, and `sharp` residual-risk acceptance or remediation.
+
+Current verdict: `ITERATION 2 IMPLEMENTED — HUMAN VALIDATION OR LIVE CERTIFICATION INCOMPLETE`

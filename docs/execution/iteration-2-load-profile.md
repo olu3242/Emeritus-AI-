@@ -16,9 +16,9 @@ Sustained-load status: `Awaiting authorized environment`.
 
 ## Latest smoke evidence
 
-Workflow `31340719340`, commit `c63121de87da25dc3284d3e9de94bdf13b9e1e31`:
+Workflow `31341528923`, commit `fe8e11e0242af1648c1776c9f5ed2faba7d64b8c`:
 
-- Job `93313911210`: 60 requests, zero failures, 100% success, p95 2.8 ms, 30.8 ms total.
-- Job `93313911225`: 60 requests, zero failures, 100% success, p95 1.1 ms, 27.7 ms total.
+- Job `93316004424`: 60 requests, zero failures, 100% success, p95 1.6 ms, 30.0 ms total.
+- Job `93316004382`: 60 requests, zero failures, 100% success, p95 1.1 ms, 28.1 ms total.
 
 Both passed the declared smoke threshold. These results remain non-certifying for production capacity.
