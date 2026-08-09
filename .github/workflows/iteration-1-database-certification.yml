@@ -60,11 +60,15 @@ jobs:
         run: npm run db:test:migrate
       - name: Run PostgreSQL and RLS certification
         run: npm run test:integration
+      - name: Run small non-certifying load harness
+        run: npm run test:load:small
       - name: Run non-live regression
         run: npm test
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run build
+      - name: Audit production-reachable dependencies
+        run: npm run audit:production
       - name: Install accessibility browser
         run: npx playwright install --with-deps chromium
       - name: Run accessibility E2E

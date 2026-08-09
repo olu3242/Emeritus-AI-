@@ -33,6 +33,8 @@
     "db:test:migrate": "tsx scripts/apply-test-migrations.ts",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "test:load:small": "tsx scripts/run-load-profile.ts --profile=small-ci",
+    "audit:production": "npm audit --omit=dev --omit=optional --audit-level=high",
     "db:migrate": "supabase migration up",
     "db:migrate:new": "supabase migration new",
     "db:reset": "supabase db reset",
