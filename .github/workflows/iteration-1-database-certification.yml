@@ -56,6 +56,8 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - name: Verify required native build dependencies
+        run: node -e "require.resolve('@rollup/rollup-linux-x64-gnu'); require.resolve('sharp'); console.log('required native modules resolved')"
       - name: Apply clean migration set
         run: npm run db:test:migrate
       - name: Run PostgreSQL and RLS certification
