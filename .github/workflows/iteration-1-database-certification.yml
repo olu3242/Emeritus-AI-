@@ -10,6 +10,7 @@ on:
       - "src/curriculum/**"
       - "tests/integration/**"
       - "scripts/apply-test-migrations.ts"
+      - "scripts/run-load-profile.ts"
       - ".github/workflows/iteration-1-database-certification.yml"
   pull_request:
     paths:
@@ -17,6 +18,7 @@ on:
       - "src/curriculum/**"
       - "tests/integration/**"
       - "scripts/apply-test-migrations.ts"
+      - "scripts/run-load-profile.ts"
       - ".github/workflows/iteration-1-database-certification.yml"
 
 permissions:
