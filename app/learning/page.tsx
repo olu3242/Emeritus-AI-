@@ -1,7 +1,7 @@
 "use client";
 import{FormEvent,useState}from"react";
 
-type Operation="start-session"|"save-progress"|"submit-assessment"|"submit-constructed"|"human-score"|"mastery-override"|"recommendation";
+type Operation="start-session"|"save-progress"|"submit-assessment"|"submit-constructed"|"human-score"|"mastery-override"|"recommendation"|"assign-remediation"|"save-remediation"|"start-reassessment"|"submit-reassessment"|"resolve-remediation"|"no-content";
 const operations:Array<{value:Operation,label:string,roles:string,help:string}>=[
  {value:"start-session",label:"Start or resume lesson",roles:"Learner",help:"Requires p_assignment and p_idempotency."},
  {value:"save-progress",label:"Autosave lesson progress",roles:"Learner",help:"Requires p_session, p_expected_lock, p_progress, p_state, and p_idempotency."},
@@ -10,6 +10,12 @@ const operations:Array<{value:Operation,label:string,roles:string,help:string}>=
  {value:"human-score",label:"Finalize rubric score",roles:"Teacher",help:"Requires rubric, criterion scores, points, and rationale."},
  {value:"mastery-override",label:"Record mastery override",roles:"Teacher",help:"Preserves calculated mastery and requires a reason."},
  {value:"recommendation",label:"Update remediation or enrichment",roles:"Teacher or learner",help:"Accept, dismiss, or complete a recommendation."},
+ {value:"assign-remediation",label:"Assign remediation and reassessment",roles:"Teacher",help:"Pins eligible lesson and reassessment versions to a recommendation."},
+ {value:"save-remediation",label:"Save remediation progress",roles:"Learner",help:"Starts, pauses, resumes, or completes remediation with conflict protection."},
+ {value:"start-reassessment",label:"Start authorized reassessment",roles:"Learner",help:"Requires completed remediation and an open assigned reassessment."},
+ {value:"submit-reassessment",label:"Submit reassessment",roles:"Learner",help:"Finalizes the started reassessment using authoritative scoring."},
+ {value:"resolve-remediation",label:"Review reassessment outcome",roles:"Teacher",help:"Resolves or continues remediation from authoritative evidence."},
+ {value:"no-content",label:"Record unavailable remediation content",roles:"Teacher",help:"Records a safe actionable outcome when no eligible resource exists."},
 ];
 export default function LearningOperations(){const[operation,setOperation]=useState<Operation>("start-session");const[token,setToken]=useState("");const[payload,setPayload]=useState("{}");const[status,setStatus]=useState("Ready.");const[busy,setBusy]=useState(false);
 async function submit(event:FormEvent){event.preventDefault();setBusy(true);setStatus("Saving…");try{const parsed=JSON.parse(payload);const response=await fetch(`/api/learning/${operation}`,{method:"POST",headers:{"content-type":"application/json",authorization:`Bearer ${token}`},body:JSON.stringify(parsed)});const result=await response.json();setStatus(response.ok?`Saved successfully. ${JSON.stringify(result.data)}`:result.error??"Operation failed.");}catch(error){setStatus(error instanceof Error?error.message:"Operation failed.");}finally{setBusy(false);}}

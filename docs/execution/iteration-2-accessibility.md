@@ -11,3 +11,5 @@ Both independent Linux jobs passed the accessibility E2E step in workflow run `3
 ## Manual scope
 
 No manual screen-reader, zoom, high-contrast, low-bandwidth, caption, transcript, or assistive-technology session was performed in this coding environment. Those checks remain `Blocked` on a qualified human accessibility review and must not be inferred from axe results.
+
+The versioned execution record is `docs/execution/iteration-2-manual-accessibility-protocol.md`. It intentionally contains no fabricated passes.

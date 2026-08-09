@@ -9,6 +9,12 @@ const procedures={
   "human-score":"finalize_human_score",
   "mastery-override":"create_mastery_override",
   "recommendation":"transition_recommendation",
+  "assign-remediation":"assign_remediation",
+  "save-remediation":"save_remediation_progress",
+  "start-reassessment":"start_remediation_reassessment",
+  "submit-reassessment":"submit_remediation_reassessment",
+  "resolve-remediation":"resolve_remediation",
+  "no-content":"mark_recommendation_no_content",
 }as const;
 
 export async function POST(request:NextRequest,{params}:{params:Promise<{action:string}>}){
