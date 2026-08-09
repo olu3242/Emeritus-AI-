@@ -65,3 +65,7 @@ jobs:
       - run: npm run typecheck
       - run: npm run lint
       - run: npm run build
+      - name: Install accessibility browser
+        run: npx playwright install --with-deps chromium
+      - name: Run accessibility E2E
+        run: npm run test:e2e

@@ -6,3 +6,5 @@ coverage/
 artifacts/certification/*.json
 supabase/.temp/
 *.tsbuildinfo
+test-results/
+playwright-report/
