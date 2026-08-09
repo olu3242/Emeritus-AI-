@@ -34,6 +34,7 @@ Verified lineage: Iteration 2 slice commit `16f7f90d2d7d1f14ee16bf177192062d4dd5
 - Automated remediation proof covers teacher assignment, unauthorized denial, learner pause/resume and stale-write rejection, completion, reassessment, replay-safe authoritative scoring, exactly one score/mastery contribution, teacher outcome resolution, guardian-safe status, and unrelated-user denial.
 - Manual accessibility protocol: prepared but unexecuted because no qualified reviewer or assistive-technology environment was supplied.
 - Sustained load/capacity profiles: unexecuted because no authorized load environment or operational SLO was supplied. Tested concurrency evidence is limited to transactional replay and stale-lock correctness.
+- Production dependency audit: failed with two high-severity inherited `sharp`/libvips advisories; npm's available automated remediation requires a breaking Next.js 16 upgrade. The finding remains open and independently prevents certification.
 
 ## Certification decision
 

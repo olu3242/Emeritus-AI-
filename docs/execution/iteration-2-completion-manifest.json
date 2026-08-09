@@ -41,6 +41,7 @@
     "remediationCommit": "b0c9e6e115ab619dedacee324d2e7cca160ca9bd"
   },
   "remaining": [
+    "two high-severity inherited sharp/libvips dependency findings requiring an evaluated breaking framework upgrade",
     "qualified manual screen-reader, zoom, high-contrast, and assistive-technology review",
     "role-specific production UX and real-use validation",
     "exhaustive adversarial security matrix beyond tested tenant, role, RLS, IDOR, answer protection, and replay cases",

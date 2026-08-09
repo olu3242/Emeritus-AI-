@@ -22,3 +22,7 @@ These are correctness thresholds for the constrained two-job CI environment, not
 No sustained virtual-user test, mixed autosave/scoring traffic profile, database resource observation, latency-percentile run, outbox-worker restart test, or production-sized dataset test was executed. Tool/version, virtual users, duration, throughput, p50/p95/p99 latency, database resource use, and production-like limits therefore remain `Blocked` pending an authorized load environment and agreed operational targets.
 
 The repository evidence supports transactional correctness under tested replay/conflict cases only. It does not support a production-scale or capacity claim.
+
+## Dependency audit
+
+`npm audit --omit=dev --audit-level=high` was executed against the candidate dependency lock on 2026-08-09. It failed with two high-severity inherited `sharp`/libvips findings (CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, and CVE-2026-35591, grouped by npm under GHSA-f88m-g3jw-g9cj). npm reports that its available automated remediation requires the breaking Next.js 16.3.0 upgrade. No forced breaking upgrade was applied and the finding remains open.
