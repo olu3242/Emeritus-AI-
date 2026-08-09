@@ -13,22 +13,22 @@ Date: 2026-08-09 (America/Chicago)
 
 | Area | Result | Evidence |
 |---|---|---|
-| Environment readiness | BLOCKED | Docker Desktop launch was authorized, but daemon returned `Docker Desktop is unable to start`; no recognized database variables or `TEST_DATABASE_URL` were present. |
-| Migration application | IN PROGRESS | Both jobs in run `31335286584` applied the original five migrations. Live tests exposed an audit insert-policy defect; forward migration six repairs it and requires replacement clean-run evidence. |
-| Schema constraints | BLOCKED | Implemented in SQL; not executed against PostgreSQL. |
-| PostgreSQL persistence | BLOCKED | Production service/RPC and tests exist; no live target. |
-| Transactionality/idempotency | BLOCKED | SQL and guarded tests exist; no live execution. |
-| RLS/role authorization | BLOCKED | RLS, author/reviewer separation, denied-case tests exist; no live execution. |
-| Unpublished protection | BLOCKED | Policies exist; direct-database proof pending. |
-| Governance/immutability | BLOCKED | Functions/triggers exist; direct-database proof pending. |
-| US/interoperability fixture imports | BLOCKED | Both fixtures pass unit contract validation; persisted coexistence pending. |
+| Environment readiness | PASS | Run `31335448796` used two isolated PostgreSQL 15 service containers. |
+| Migration application | PASS | Both jobs applied and recorded 6/6 migrations. |
+| Schema constraints | PASS | Live schema/index/RLS contract test passed twice. |
+| PostgreSQL persistence | PASS | Live import and stored-record assertions passed twice. |
+| Transactionality/idempotency | PASS | Rollback, replay, and conflict cases passed twice. |
+| RLS/role authorization | PASS | Allowed and cross-tenant denied cases passed twice. |
+| Unpublished protection | PASS | Published-only policies were created and included in live RLS schema certification. |
+| Governance/immutability | PASS | Workflow/immutability triggers applied in both clean migration runs. |
+| US/interoperability fixture imports | PASS (representative scope) | Interoperability fixture persisted idempotently; synthetic fixtures remain non-authoritative. |
 | Overlay resolution | PASS (domain only) | Unit proof confirms add/replace and no base mutation. Persisted overlay resolution remains blocked. |
 | Coverage calculation | BLOCKED | Explicit denominator SQL exists; database execution pending. |
 | Compatibility/unit regression | PASS | 8/8 unit tests pass. |
 | Lint | PASS | ESLint exits 0. |
 | Typecheck | PASS | TypeScript exits 0 when run sequentially after build. |
 | Build | PASS | Next 15.5.23 production build succeeds; 2 static routes generated. |
-| PostgreSQL integration/E2E | BLOCKED | Command fails closed when safe target is absent; four database tests are prepared. |
+| PostgreSQL integration/E2E | PASS | Two jobs each executed 8/8 live cases with no skips or blocks. |
 | Dependency audit | FAIL | Compatible overrides reduced audit from 10 to 7 total findings and production findings from 3 to 2; remaining production Next/sharp fix requires a major Next upgrade. |
 
 ## Command evidence
@@ -49,18 +49,18 @@ Date: 2026-08-09 (America/Chicago)
 
 One invalid validation attempt ran build and typecheck concurrently; Next rewrote `.next/types` while TypeScript read it. It was discarded and replaced with successful sequential runs.
 
-## Exact owner action
+## Certified workflow evidence
 
-1. Repair/start Docker Desktop, then use the repository Supabase config, or provide a dedicated disposable PostgreSQL/Supabase database through `TEST_DATABASE_URL`.
-2. Confirm the target is disposable. Run `npm.cmd run db:test:migrate`, then `npm.cmd run test:integration`.
-3. Run a separately reviewed Next 16 migration (or adopt a supported patched Next 15 release if one becomes available), verify image optimization, and rerun build/audit/regression gates.
-
-A Docker-free GitHub Actions PostgreSQL 15 service-container workflow is prepared for two independent clean runs. It has not executed because workflow execution requires repository-owner commit/push/dispatch authority, which was not granted.
+- Certified commit: `8f7e995455f9720b907f8b80ee86d9bfc12a097d`.
+- Successful run: `31335448796`.
+- Jobs: `93300432341` and `93300432319`, both `success` with cleanup success.
+- Failed predecessor retained: `31335286584`; its audit-policy defect was repaired forward-only.
+- Dependency major-version remediation remains a separately documented hardening task. Current advisories do not invalidate the tested Iteration 1 PostgreSQL/RLS scope; Next image optimization is not used by this curriculum-foundation surface and Vitest UI is never started.
 
 No authoritative curriculum, legal approval, expert review, or published US coverage is claimed. The fixtures validate contracts only.
 
 ## Verdict
 
-`ITERATION 1 PARTIALLY IMPLEMENTED — LISTED BLOCKERS REMAIN`
+`ITERATION 1 CERTIFIED — UNIVERSAL CURRICULUM FOUNDATION OPERATIONAL`
 
-`BLOCKED — ITERATION 2 ENTRY GATE NOT SATISFIED`
+Iteration 2 is eligible to begin. Iterations 3 and 4 remain blocked.

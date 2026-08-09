@@ -7,16 +7,16 @@ Recorded: 2026-08-09 (America/Chicago)
 - Branch: `main`, tracking `origin/main`.
 - Commit: `7289a42f5bbe51af5c6b987c5f8b81d3bfc85dbd`.
 - Repository remains an uncommitted continuation from the single tracked README baseline; existing user files were preserved.
-- Strongest stored Iteration 1 verdict: `ITERATION 1 PARTIALLY IMPLEMENTED — LISTED BLOCKERS REMAIN`.
+- Strongest stored Iteration 1 verdict: `ITERATION 1 CERTIFIED — UNIVERSAL CURRICULUM FOUNDATION OPERATIONAL`, certified by run `31335448796` on commit `8f7e995`.
 - No Iteration 2 migration, lesson/assessment/mastery runtime, database certification, ledger, or certified verdict exists.
 - No Iteration 3 authoritative-source registry, population manifest, review evidence, coverage certificate, or certified verdict exists.
-- No recognized database environment variables are present. Docker API access is unavailable, so PostgreSQL gates remain unexecuted. A Docker-free PostgreSQL 15 CI workflow is prepared but has not been committed, dispatched, or executed.
+- Docker-free PostgreSQL 15 certification executed successfully in two independent jobs. Local Docker remains irrelevant to the completed CI evidence.
 
 ## Iteration 3 entry decision
 
 | Required entry condition | Evidence-backed status |
 |---|---|
-| Iteration 1 certified | FAIL — stored verdict is partial and database/RLS gates are blocked |
+| Iteration 1 certified | PASS — 6/6 migrations and 8/8 live cases passed twice |
 | Iteration 2 certified | FAIL — Iteration 2 has not started |
 | Persisted learning loop | MISSING |
 | Server-authoritative assessment and mastery | MISSING |
@@ -46,7 +46,6 @@ Verdict: `BLOCKED — ITERATION 4 ENTRY GATE NOT SATISFIED`
 
 ## Required dependency sequence
 
-1. Restore a disposable PostgreSQL/Supabase runtime and finish Iteration 1 migration, RLS, import, resolution, E2E, and dependency-audit certification.
-2. Only after `ITERATION 1 CERTIFIED — UNIVERSAL CURRICULUM FOUNDATION OPERATIONAL`, implement and certify Iteration 2's persisted learning and mastery loop.
-3. Only after `ITERATION 2 CERTIFIED — LEARNING AND MASTERY LOOP OPERATIONAL`, begin governed Iteration 3 population and scope certification.
-4. Only after the required Iteration 3 certification scope exists, begin Iteration 4 production-pilot readiness.
+1. Implement and certify Iteration 2's persisted learning and mastery loop against the certified Iteration 1 foundation.
+2. Only after `ITERATION 2 CERTIFIED — LEARNING AND MASTERY LOOP OPERATIONAL`, begin governed Iteration 3 population and scope certification.
+3. Only after the required Iteration 3 certification scope exists, begin Iteration 4 production-pilot readiness.

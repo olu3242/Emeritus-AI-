@@ -7,18 +7,18 @@
 | Configured disposable URL | No recognized variable present | Unavailable |
 | Local Supabase | Config exists; Docker engine unavailable | Blocked |
 | Repository test container | Docker unavailable locally | Blocked |
-| GitHub Actions PostgreSQL service | Harness now exists; workflow has not executed | Selected reproducible handoff |
+| GitHub Actions PostgreSQL service | Executed successfully in run `31335448796` | Selected and certified |
 | Local PostgreSQL | No service, server, client, or listener found | Unavailable |
 | WSL PostgreSQL | WSL distribution enumeration denied | Unavailable |
 | New remote provider | Not authorized and no credentials supplied | Rejected |
 
 The selected CI path uses a fresh PostgreSQL 15 service for each of two independent matrix jobs. Its database name contains `test`; the job-local container uses trust authentication on the isolated GitHub runner and stores no password. A test-only bootstrap provides Supabase-compatible roles, `auth.users`, and `auth.uid()` semantics before the production migration set is applied.
 
-## Required owner
+## Completed handoff
 
-Repository/environment owner with permission to run GitHub Actions or provide a disposable database.
+The feature branch was pushed and the workflow executed without merging into `main`. Both independent jobs passed and cleaned up.
 
-## Minimum action
+## Reproduction options
 
 Choose one:
 

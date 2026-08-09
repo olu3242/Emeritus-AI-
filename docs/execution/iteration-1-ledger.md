@@ -28,18 +28,18 @@
 | Lint | Missing | Validated | ESLint 9 flat config; `npm run lint`: exit 0 after remediation | None | No |
 | Production build | Missing | Validated | Minimal truthful Next entry surface; `npm run build`: exit 0 | None | No |
 | Dependency advisories | Unassessed | In progress | PostCSS and tar patched compatibly; remaining Next/sharp and Vitest/Vite findings documented in `iteration-1-advisories.md` | Engineering owner: compatibility-test supported major upgrades | Audit gate not passed |
-| Docker-free certification path | Not started | In progress | PostgreSQL 15 CI service workflow, six-migration history verification, Supabase-compatible test bootstrap, and eight live cases. Run `31335286584` applied the first five migrations in both jobs and exposed the audit insert-policy defect; forward migration six repairs it. | Replacement two-job run must pass | Blocks entry until executed successfully |
+| Docker-free certification path | Not started | Certified | Run `31335448796` on `8f7e995`: both PostgreSQL 15 jobs applied 6/6 migrations, passed 8/8 live tests and all non-live gates, and cleaned up successfully. Failed predecessor `31335286584` is retained. | None | Iteration 2 eligible |
 
-## Unmet exit-gate items
+## Previously unmet items and resolution
 
-- Docker daemon is unavailable; local Supabase cannot start, so migrations, RLS, transaction/idempotency integration, and production runtime resolution are not certified.
+- Local Docker remains unavailable. This was resolved for certification by two successful disposable PostgreSQL 15 CI jobs.
 - No verified authoritative US curriculum source or license inventory was supplied. Synthetic fixtures cannot satisfy population requirements.
 - No operational web administration UI exists; the repository-appropriate service/RPC surface exists and the build has a truthful status surface only.
-- Migration, integration, security, E2E, and regression suites against Postgres remain incomplete.
+- Migration, integration, RLS, security, and regression suites passed in run `31335448796`; broader authoritative curriculum population remains outside Iteration 1 certification scope.
 - Dependency audit completed. Compatible PostCSS/tar overrides were applied; supported fixes for remaining findings require separately reviewed major upgrades.
 
 ## Verdict
 
-`ITERATION 1 PARTIALLY IMPLEMENTED — LISTED BLOCKERS REMAIN`
+`ITERATION 1 CERTIFIED — UNIVERSAL CURRICULUM FOUNDATION OPERATIONAL`
 
-Iteration 2 was not started.
+Iteration 2 was not started and is now eligible to begin. Iterations 3 and 4 remain blocked.

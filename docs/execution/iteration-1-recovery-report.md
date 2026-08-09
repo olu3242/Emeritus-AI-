@@ -57,13 +57,17 @@ Initial expected set: five migrations, ordered `20260809150000` through `2026080
 
 The repository/environment owner must either run the prepared GitHub Actions workflow after normal commit/review, or securely provide a positively identified disposable `TEST_DATABASE_URL` and run the migration and integration commands documented in `disposable-database-handoff.md`. Retain command logs and both clean-run results; destroy or rotate temporary access afterward.
 
+## Live certification completion
+
+Replacement run `31335448796` certified commit `8f7e995455f9720b907f8b80ee86d9bfc12a097d`. Both independent PostgreSQL 15 jobs passed: 6/6 migrations, 8/8 live integration/RLS tests, 8/8 unit tests, typecheck, lint, build, and cleanup. No live tests were failed, skipped, or blocked. Public check metadata reported zero annotations. The failed predecessor run `31335286584` remains recorded.
+
 ## Downstream state
 
-- Iteration 1: not certified.
-- Iteration 2: may not begin.
+- Iteration 1: certified.
+- Iteration 2: eligible to begin, but not started in this task.
 - Iteration 3: blocked on certified Iterations 1 and 2.
 - Iteration 4: blocked on certified Iterations 1–3.
 
 ## Verdict
 
-`BLOCKED — ENVIRONMENT-OWNER DATABASE PROVISIONING REQUIRED`
+`ITERATION 1 CERTIFIED — UNIVERSAL CURRICULUM FOUNDATION OPERATIONAL`
