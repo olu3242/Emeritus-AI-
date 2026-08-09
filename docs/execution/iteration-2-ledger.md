@@ -16,6 +16,8 @@ Verified lineage: Iteration 2 slice commit `16f7f90d2d7d1f14ee16bf177192062d4dd5
 | Operational interfaces | Partial | Authenticated `/learning` console and allowlisted `/api/learning/[action]` RPC gateway | Build and automated browser checks passed twice; role-specific production UX remains unproven |
 | Accessibility | Partial | Semantic UI, keyboard skip navigation, labels/status, responsive/reduced-motion CSS, axe Playwright suite | Linux accessibility E2E passed twice; required human AT review not performed |
 | Security and concurrency | Automated core pass | RLS, function-level role checks, bearer-auth gateway, optimistic lock, idempotency, and audit/outbox persistence | Clean PostgreSQL/RLS suite passed twice; exhaustive adversarial/scale matrix remains unproven |
+| Dependency security | Awaiting owner decision | Image optimizer disabled; no image-processing route/import; production-reachability audit passes | Bundled optional `sharp` residual risk requires owner acceptance or framework remediation |
+| Load validation | Awaiting authorized environment | Reproducible small-CI harness and owner execution profile | 60-request smoke passed twice; sustained profile not executed |
 
 ## Final automated evidence
 
@@ -34,7 +36,15 @@ Verified lineage: Iteration 2 slice commit `16f7f90d2d7d1f14ee16bf177192062d4dd5
 - Automated remediation proof covers teacher assignment, unauthorized denial, learner pause/resume and stale-write rejection, completion, reassessment, replay-safe authoritative scoring, exactly one score/mastery contribution, teacher outcome resolution, guardian-safe status, and unrelated-user denial.
 - Manual accessibility protocol: prepared but unexecuted because no qualified reviewer or assistive-technology environment was supplied.
 - Sustained load/capacity profiles: unexecuted because no authorized load environment or operational SLO was supplied. Tested concurrency evidence is limited to transactional replay and stale-lock correctness.
-- Production dependency audit: failed with two high-severity inherited `sharp`/libvips advisories; npm's available automated remediation requires a breaking Next.js 16 upgrade. The finding remains open and independently prevents certification.
+- Complete lockfile dependency audit: reports two high-severity inherited `sharp`/libvips advisories; npm's available automated remediation requires a breaking Next.js 16 upgrade. Production reachability is mitigated and its scoped audit passes, but owner disposition remains required.
+
+## Terminal automated evidence
+
+- Tested commit: `c63121de87da25dc3284d3e9de94bdf13b9e1e31`.
+- Workflow: `31340719340`; jobs `93313911210` and `93313911225`, both successful with cleanup and no failed step.
+- Per job: 11 migrations, 15 PostgreSQL/RLS/security/concurrency tests, 13 unit tests, 60-request non-certifying load smoke, typecheck, lint, production build, production-reachability audit, and four browser accessibility/workflow tests.
+- Failed predecessor runs `31339119149`, `31339264541`, `31340355145`, `31340407151`, and `31340495171` remain preserved and led to corrected optional-dependency handling, portable test configuration, RLS filtered-update semantics, CommonJS load execution, and mobile reflow.
+- Repository-resolvable automated gates are green. Connected guardian/administrator production UX, qualified accessibility, external real-user validation, sustained authorized load, and dependency residual-risk approval remain open.
 
 ## Certification decision
 

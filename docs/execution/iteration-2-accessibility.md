@@ -6,7 +6,7 @@ The `/learning` operational surface includes a skip link, semantic main/section/
 
 Playwright checks keyboard access to the skip link and runs axe against WCAG 2 A/AA, WCAG 2.1 AA, and WCAG 2.2 AA tags. The two browser assertions complete locally without assertion failures; Windows process teardown currently prevents the local command from reaching a clean exit and is therefore not counted as a local pass. The Linux CI result is the authoritative automated result.
 
-Both independent Linux jobs passed the accessibility E2E step in workflow run `31338095308`: jobs `93307142835` and `93307142861`.
+Both independent Linux jobs passed four accessibility and workflow E2E tests in terminal workflow `31340719340`: jobs `93313911210` and `93313911225`. A detected 320-pixel horizontal overflow defect was fixed in commit `c63121d` without weakening the assertion.
 
 ## Manual scope
 

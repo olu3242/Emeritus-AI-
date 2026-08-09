@@ -23,6 +23,8 @@ No sustained virtual-user test, mixed autosave/scoring traffic profile, database
 
 The repository evidence supports transactional correctness under tested replay/conflict cases only. It does not support a production-scale or capacity claim.
 
+Terminal run `31340719340` passed 15/15 PostgreSQL tests independently in jobs `93313911210` and `93313911225`. Added cases cover cross-tenant and same-tenant filtered reads, administrator tenant isolation, answer/rubric/outbox protection, direct mutation filtering, expired assignments, withdrawn enrollment, guardian revocation, internal-note isolation, concurrent session convergence, stale/replay invariants, and bounded response payloads. Enforcement spans authentication context, RLS, function authorization, domain windows, database uniqueness, idempotency, and optimistic locking.
+
 ## Dependency audit
 
-`npm audit --omit=dev --audit-level=high` was executed against the candidate dependency lock on 2026-08-09. It failed with two high-severity inherited `sharp`/libvips findings (CVE-2026-33327, CVE-2026-33328, CVE-2026-35590, and CVE-2026-35591, grouped by npm under GHSA-f88m-g3jw-g9cj). npm reports that its available automated remediation requires the breaking Next.js 16.3.0 upgrade. No forced breaking upgrade was applied and the finding remains open.
+The complete lockfile audit reports two high-severity inherited `sharp`/libvips findings. The production-reachability audit passed in both terminal jobs after server image optimization was disabled and repository search proved no image-processing path. Because `sharp` remains installed, the disposition is `Temporarily mitigated with accepted residual risk required`; no acceptance has been fabricated. See `iteration-2-dependency-security.md`.
