@@ -8,10 +8,10 @@ The candidate lock contains optional `sharp@0.34.5`, introduced only by `next@15
 
 - Repository search finds no `next/image`, image route, `sharp` import, or application image-processing call.
 - `next.config.ts` sets `images.unoptimized=true`, disabling the Next server image-optimization path.
-- `.npmrc` sets `omit=optional`, so a clean production/CI install does not install the optional native `sharp` package.
-- The production audit command explicitly excludes optional packages: `npm audit --omit=dev --omit=optional --audit-level=high`.
+- A clean install retains the optional native package because globally omitting optional dependencies also removes Rollup's required platform-native binary. Failed runs `31339119149` and `31339264541` preserve that evidence; the unsafe global omission was removed.
+- The production-reachability audit command excludes optional packages: `npm audit --omit=dev --omit=optional --audit-level=high`. The complete lockfile audit continues to report the inherited finding.
 - No untrusted image upload or image-transformation interface exists in Iteration 2.
 
-Classification: `Not affected with verified evidence` for the current repository build and declared install procedure. This classification expires if optional dependencies are installed in deployment, image optimization is enabled, an image-processing/upload path is added, or the Next.js installation policy changes. Revalidation is required at each of those triggers. No risk acceptance or advisory suppression is asserted.
+Classification: `Temporarily mitigated with accepted residual risk required`. Repository evidence shows no application path to the vulnerable functionality, but the optional native package remains installed. No acceptance is fabricated: an authorized owner must accept the residual bundled-code risk or authorize a compatible framework/package remediation. Revalidation is required if image optimization is enabled, an image-processing/upload path is added, or the Next.js installation policy changes.
 
-The lockfile retains metadata for reproducible dependency resolution; presence in lock metadata is not runtime reachability. A clean CI installation and production build without optional dependencies are required evidence.
+Required approver: product security or deployment owner. Decision expiry: 2026-09-09. Upgrade trigger: a Next.js 15-compatible `sharp >=0.35` range, an approved Next.js 16 migration, any image-processing feature, or the expiry date—whichever occurs first.
