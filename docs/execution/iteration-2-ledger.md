@@ -1,27 +1,34 @@
 # Iteration 2 execution ledger
 
-Entry gate: Iteration 1 certified by PostgreSQL run `31335448796` on commit `8f7e995`.
+Entry gate: Iteration 1 certified by PostgreSQL run `31335448796` on commit `8f7e995455f9720b907f8b80ee86d9bfc12a097d`.
+
+Verified lineage: Iteration 2 slice commit `16f7f90d2d7d1f14ee16bf177192062d4dd587c2` and evidence commit `eeb2c32e20a5c43ffd92690bd3cff86a2687faa7`.
 
 | Requirement | Status | Repository evidence | Certification evidence |
 |---|---|---|---|
-| Versioned lessons and assessments | PostgreSQL-backed | Migration `20260809160000`; immutable version references in sessions/attempts | Run `31337024669` passed twice |
-| Classes, enrollment, guardian authorization | RLS-validated | Tenant-scoped tables, atomic guardian predicate, denied unrelated user | 9/9 live cases passed twice |
-| Assignment and resumable session | E2E-validated | `start_learning_session`, idempotent unique keys | Persisted session proven twice |
-| Protected scoring | E2E-validated | Item table revoked from authenticated roles; `submit_assessment` server function | Correct score, replay, and answer-key denial passed twice |
-| Deterministic mastery | E2E-validated | `src/learning/mastery.ts`; persisted decision and recommendation | 11/11 unit and 9/9 live cases passed twice |
-| Remediation/enrichment | E2E-validated (rule slice) | Persisted recommendation derived from mastery ratio | Enrichment path passed twice; broader remediation journey outstanding |
-| Complete persisted vertical slice | E2E-validated | Learner, teacher-owned assignment, guardian, scoring, mastery, audit | Jobs `93304457681`, `93304457697` succeeded |
-| Accessibility UI journeys | Not started | No operational lesson player yet | Blocks certification |
-| Human rubric scoring and teacher override | Not started | Not in first slice | Blocks certification |
+| Versioned lessons and assessments | Automated pass | Version-pinned sessions and attempts; expanded item-type constraints | Two clean PostgreSQL 15 jobs passed |
+| Classes, enrollment, guardian authorization | Automated pass | Tenant-scoped RLS and atomic guardian predicates | PostgreSQL/RLS step passed twice |
+| Assignment and resumable session | Automated pass | Start, optimistic-lock autosave, idempotency, and outbox RPCs | Concurrent save and stale-write denial passed twice |
+| Protected automatic scoring | Automated pass | Server-authoritative submission; answer keys revoked; deterministic multi-select, numeric, and short-response scorers | Live database and unit regression steps passed twice |
+| Human rubric scoring | Automated pass | Versioned rubrics, immutable score revisions, role checks, and audit events | Unauthorized denial and authorized scoring passed twice |
+| Mastery and teacher override | Automated pass | Deterministic mastery plus append-only override history and rationale | Live mastery/override cases passed twice |
+| Remediation, reassessment, enrichment | Partial | Governed recommendation transitions and event history exist; no complete learner remediation/reassessment content journey | Transition authorization covered; full journey remains unproven |
+| Operational interfaces | Partial | Authenticated `/learning` console and allowlisted `/api/learning/[action]` RPC gateway | Build and automated browser checks passed twice; role-specific production UX remains unproven |
+| Accessibility | Partial | Semantic UI, keyboard skip navigation, labels/status, responsive/reduced-motion CSS, axe Playwright suite | Linux accessibility E2E passed twice; required human AT review not performed |
+| Security and concurrency | Automated core pass | RLS, function-level role checks, bearer-auth gateway, optimistic lock, idempotency, and audit/outbox persistence | Clean PostgreSQL/RLS suite passed twice; exhaustive adversarial/scale matrix remains unproven |
 
-## Live evidence
+## Final automated evidence
 
-- Commit: `16f7f90d2d7d1f14ee16bf177192062d4dd587c2`.
-- Workflow: `31337024669`.
-- PostgreSQL jobs: `93304457681`, `93304457697`, both successful with cleanup.
-- Per job: 7/7 migrations, 9/9 live cases, 11/11 unit tests, typecheck, lint, and build.
-- Failed predecessor runs remain preserved and led to migration syntax, scoring-name, and guardian-RLS fixes without weakening assertions.
+- Tested commit: `b0c9e6e115ab619dedacee324d2e7cca160ca9bd`.
+- Workflow run: `31338095308`.
+- PostgreSQL 15 jobs: `93307142835` and `93307142861`, both successful with container cleanup.
+- Every job independently passed: clean migration application, PostgreSQL/RLS certification, 13-test non-live regression, typecheck, lint, production build, browser installation, and two-test accessibility E2E.
+- Failed predecessor run `31337991331` is retained. It exposed an ambiguous PL/pgSQL human-score revision reference; commit `b0c9e6e` corrected it without weakening the test.
+
+## Certification decision
+
+Automated repository certification is green, but the stated exit gate also requires evidence not available from this coding run: qualified manual assistive-technology review and a complete real-user remediation/reassessment journey. Those requirements cannot be inferred from axe, build, or database success.
 
 Current verdict: `ITERATION 2 PARTIALLY IMPLEMENTED — LISTED REQUIREMENTS REMAIN`
 
-Iteration 3 remains blocked until the full Iteration 2 exit gate passes.
+Iteration 3 remains blocked. The certification phrase `ITERATION 2 CERTIFIED — PERSISTED LEARNING AND MASTERY LOOP OPERATIONAL` is intentionally not issued.
