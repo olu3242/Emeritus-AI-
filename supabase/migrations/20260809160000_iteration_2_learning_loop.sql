@@ -75,7 +75,7 @@ alter table public.lesson_versions enable row level security;alter table public.
 alter table public.assignments enable row level security;alter table public.learning_sessions enable row level security;alter table public.assessment_attempts enable row level security;
 alter table public.assessment_scores enable row level security;alter table public.mastery_decisions enable row level security;alter table public.learning_recommendations enable row level security;
 
-create function public.has_guardian_access(p_organization uuid,p_learner uuid)returns boolean language sql stable security definer set search_path=''as$$select exists(select 1 from public.guardian_relationships g where g.organization_id=p_organization and g.guardian_id=auth.uid()and g.learner_id=p_learner and g.status='active')$$;
+create function public.has_guardian_access(p_organization uuid,p_learner uuid) returns boolean language sql stable security definer set search_path='' as $$ select exists(select 1 from public.guardian_relationships g where g.organization_id=p_organization and g.guardian_id=auth.uid()and g.learner_id=p_learner and g.status='active') $$;
 revoke all on function public.has_guardian_access(uuid,uuid)from public;grant execute on function public.has_guardian_access(uuid,uuid)to authenticated;
 
 create policy class_teacher_read on public.classes for select using(teacher_id=auth.uid() or public.has_org_role(organization_id,array['administrator','platform_administrator']::public.app_role[]));
