@@ -2,6 +2,15 @@ name: Iteration 1 database certification
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - iteration-1-db-certification
+    paths:
+      - "supabase/migrations/**"
+      - "src/curriculum/**"
+      - "tests/integration/**"
+      - "scripts/apply-test-migrations.ts"
+      - ".github/workflows/iteration-1-database-certification.yml"
   pull_request:
     paths:
       - "supabase/migrations/**"
