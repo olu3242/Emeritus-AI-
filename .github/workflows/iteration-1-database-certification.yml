@@ -8,6 +8,8 @@ on:
     paths:
       - "supabase/migrations/**"
       - "src/curriculum/**"
+      - "app/**"
+      - "tests/e2e/**"
       - "tests/integration/**"
       - "scripts/apply-test-migrations.ts"
       - "scripts/run-load-profile.ts"
@@ -16,6 +18,8 @@ on:
     paths:
       - "supabase/migrations/**"
       - "src/curriculum/**"
+      - "app/**"
+      - "tests/e2e/**"
       - "tests/integration/**"
       - "scripts/apply-test-migrations.ts"
       - "scripts/run-load-profile.ts"
