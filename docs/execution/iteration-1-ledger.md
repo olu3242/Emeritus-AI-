@@ -28,7 +28,7 @@
 | Lint | Missing | Validated | ESLint 9 flat config; `npm run lint`: exit 0 after remediation | None | No |
 | Production build | Missing | Validated | Minimal truthful Next entry surface; `npm run build`: exit 0 | None | No |
 | Dependency advisories | Unassessed | In progress | PostCSS and tar patched compatibly; remaining Next/sharp and Vitest/Vite findings documented in `iteration-1-advisories.md` | Engineering owner: compatibility-test supported major upgrades | Audit gate not passed |
-| Docker-free certification path | Not started | Implemented, execution blocked | PostgreSQL 15 CI service workflow, five-migration history verification, Supabase-compatible test bootstrap, and eight live cases prepared | Repository owner: commit/review and dispatch workflow, or supply disposable `TEST_DATABASE_URL` | Blocks entry until executed successfully |
+| Docker-free certification path | Not started | In progress | PostgreSQL 15 CI service workflow, six-migration history verification, Supabase-compatible test bootstrap, and eight live cases. Run `31335286584` applied the first five migrations in both jobs and exposed the audit insert-policy defect; forward migration six repairs it. | Replacement two-job run must pass | Blocks entry until executed successfully |
 
 ## Unmet exit-gate items
 

@@ -31,4 +31,4 @@ Choose one:
 
 The URL must use `postgresql://.../<database>` and the database name must contain `test` unless the host is `localhost`/`127.0.0.1`. Required privileges are database/schema creation and ownership-level DDL for the isolated database, including `pgcrypto`, roles, functions, triggers, policies, and RLS. Never target production or a shared development database. Rotate or destroy temporary credentials after the run; the environment owner owns cleanup.
 
-Expected successful evidence is five recorded migrations, all database-backed integration/RLS tests passing in both clean jobs, green non-live regression/build gates, and no secret values in logs or artifacts.
+Expected successful evidence is six recorded migrations, all database-backed integration/RLS tests passing in both clean jobs, green non-live regression/build gates, and no secret values in logs or artifacts. The sixth migration is the forward-only repair for the audit-event insert policy exposed by failed run `31335286584`.

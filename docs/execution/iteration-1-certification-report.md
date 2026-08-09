@@ -14,7 +14,7 @@ Date: 2026-08-09 (America/Chicago)
 | Area | Result | Evidence |
 |---|---|---|
 | Environment readiness | BLOCKED | Docker Desktop launch was authorized, but daemon returned `Docker Desktop is unable to start`; no recognized database variables or `TEST_DATABASE_URL` were present. |
-| Migration application | BLOCKED | Five ordered migrations exist; `npm.cmd run db:test:migrate` exits nonzero with `TEST_DATABASE_URL is required`. |
+| Migration application | IN PROGRESS | Both jobs in run `31335286584` applied the original five migrations. Live tests exposed an audit insert-policy defect; forward migration six repairs it and requires replacement clean-run evidence. |
 | Schema constraints | BLOCKED | Implemented in SQL; not executed against PostgreSQL. |
 | PostgreSQL persistence | BLOCKED | Production service/RPC and tests exist; no live target. |
 | Transactionality/idempotency | BLOCKED | SQL and guarded tests exist; no live execution. |

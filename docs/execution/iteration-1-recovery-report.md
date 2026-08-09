@@ -25,7 +25,7 @@ Recorded: 2026-08-09 (America/Chicago)
 - Explicit live opt-in remains `TEST_DATABASE_URL`; absent configuration fails closed.
 - Target guard accepts localhost or a database name containing `test` and rejects unidentified remote targets.
 - Optional `TEST_DATABASE_BOOTSTRAP=supabase-compatible` creates test-only auth roles, `auth.users`, and `auth.uid()` semantics for plain PostgreSQL.
-- Migration runner applies five ordered migrations, records exact identifiers, refuses reapplication, and verifies history count.
+- Migration runner applies six ordered migrations, records exact identifiers, refuses reapplication, and verifies history count. Migration six is the forward-only audit insert-policy repair exposed consistently by both jobs in failed run `31335286584`.
 - CI matrix provisions two fresh PostgreSQL 15 environments to test reproducibility without cross-run contamination.
 - Eight live tests are prepared: allowed/cross-tenant reads, unauthorized import, cross-tenant insert/update/delete denial, rollback, schema/index/RLS checks, committed idempotent import with audit evidence, and idempotency conflict rejection.
 - Workflow syntax is not execution evidence. Zero live tests ran in this environment.
@@ -44,7 +44,7 @@ Recorded: 2026-08-09 (America/Chicago)
 
 ## Migration manifest
 
-Expected: five migrations, ordered `20260809150000` through `20260809154000`. Applied: zero. Failed: zero because no target was contacted. Drift/clean-install/upgrade-path results: blocked.
+Initial expected set: five migrations, ordered `20260809150000` through `20260809154000`; both CI jobs applied these successfully in run `31335286584`. The live tests exposed a missing authorized audit insert policy, now repaired by forward migration `20260809155000`. Current expected set: six. Replacement clean-run evidence remains pending.
 
 ## Credential safety
 
